@@ -7,15 +7,15 @@ construcción, mecánica, soldadura y campo. Pago contraentrega, pedido por What
 - Colores: Negra, Oro, Café, Avellana.
 - Tallas: 37 a 44.
 
-## Fotos del producto — 5 por color (carpeta `img/`)
-La foto `-1` es la portada de cada color. Aparecen solas al subirlas; las que falten se omiten.
+## Fotos del producto — 6 por color, numeradas 0 a 5 (carpeta `img/`)
+La foto `-0` es la portada de cada color (póster con precio); `-1` a `-4` son tomas del producto y `-5` la suela. Aparecen solas al subirlas; las que falten se omiten.
 
 | Color    | Archivos |
 |----------|----------|
-| Negra    | `campero-negra-1.jpg` … `campero-negra-5.jpg` |
-| Oro      | `campero-oro-1.jpg` … `campero-oro-5.jpg` |
-| Café     | `campero-cafe-1.jpg` … `campero-cafe-5.jpg` |
-| Avellana | `campero-avellana-1.jpg` … `campero-avellana-5.jpg` |
+| Negra    | `campero-negra-0.jpg` … `campero-negra-5.jpg` |
+| Oro      | `campero-oro-0.jpg` … `campero-oro-5.jpg` |
+| Café     | `campero-cafe-0.jpg` … `campero-cafe-5.jpg` |
+| Avellana | `campero-avellana-0.jpg` … `campero-avellana-5.jpg` |
 
 Opcionales:
 - `img/uso-1.jpg` … `uso-4.jpg` → fotos de la bota en obra, taller, soldadura y campo (sin foto se ve un fondo temático).

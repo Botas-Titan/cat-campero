@@ -369,14 +369,14 @@ ttq.page();
   <!-- ========== 1. HERO ========== -->
   <section class="hero">
 
-    <!-- 📸 GALERÍA PROTAGONISTA — 5 fotos por color (ver GALERIA en el script de abajo) -->
+    <!-- 📸 GALERÍA PROTAGONISTA — 6 fotos por color (0 a 5) (ver GALERIA en el script de abajo) -->
     <div class="hero-img" id="hero-img">
       <span class="badge-cuero">100% Cuero</span>
       <img id="foto-principal" alt="Bota CAT Campero Negra">
       <div class="foto-ph">
         <div class="ic">🥾</div>
         <div>FOTO DEL PRODUCTO</div>
-        <small id="foto-ph-nombre">Sube img/campero-negra-1.jpg</small>
+        <small id="foto-ph-nombre">Sube img/campero-negra-0.jpg</small>
       </div>
       <span class="zoom-tip" id="swipe-hint">👉 Desliza</span>
     </div>
@@ -783,14 +783,14 @@ ttq.page();
   });
 
   // ============================================================
-  // 🔶 GALERÍA DE FOTOS POR COLOR — 5 fotos por color
-  //    Sube las fotos a la carpeta img/ con estos nombres exactos.
-  //    La foto -1 es la portada. Las que no existan se omiten solas.
+  // 🔶 GALERÍA DE FOTOS POR COLOR — 6 fotos por color (0 a 5)
+  //    Fotos en img/campero-<color>-<0..5>.jpg  (color: negra, oro, cafe, avellana).
+  //    La foto -0 es la portada. Las que no existan se omiten solas.
   // ============================================================
   var ARCHIVO_COLOR = { 'Negra':'negra', 'Oro':'oro', 'Café':'cafe', 'Avellana':'avellana' };
   var GALERIA = {};
   Object.keys(ARCHIVO_COLOR).forEach(function(c){
-    GALERIA[c] = [1,2,3,4,5].map(function(n){ return 'img/campero-' + ARCHIVO_COLOR[c] + '-' + n + '.jpg'; });
+    GALERIA[c] = [0,1,2,3,4,5].map(function(n){ return 'img/campero-' + ARCHIVO_COLOR[c] + '-' + n + '.jpg'; });
   });
 
   var colorActual = 'Negra';
@@ -827,7 +827,7 @@ ttq.page();
     galeriaActual = [];
     galeriaIndice = 0;
     document.getElementById('foto-ph-nombre').textContent = 'Sube ' + lista[0];
-    // la portada (foto -1) siempre es la principal, sin importar qué miniatura cargue primero
+    // la portada (foto -0) siempre es la principal, sin importar qué miniatura cargue primero
     if(lista[0]) setMain(lista[0], color);
     var hint = document.getElementById('swipe-hint'); if(hint) hint.style.display = 'none';
     lista.forEach(function(src){
