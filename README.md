@@ -24,5 +24,5 @@ Opcionales:
 Comprime fotos (TinyPNG, <200 KB) y video (HandBrake) como en `velez-thomas/LEEME.md`.
 
 ## Pendientes
-- Número de WhatsApp: `WA_NUMERO` en `index.html` y el enlace en `gracias.html` (hoy 573224018992, el mismo de Velez Thomas).
+- Número de WhatsApp: `WA_NUMERO` en `index.html` y el enlace en `gracias.html` (hoy 573159928000).
 - Píxel Meta/TikTok: bloques comentados en `<head>` de `index.html` y `gracias.html`.
