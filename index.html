@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bota CAT Campero | 100% Cuero · Trabajo Pesado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Bota CAT Campero 100% en cuero, suela en caucho de alta resistencia, sin cordones. Para construcción, mecánica y soldadura. Colores Negra, Oro, Café y Avellana. Envío gratis y pago contraentrega en toda Colombia.">
+
+<!-- ============================================================= -->
+<!-- 🔶 PÍXELES DE SEGUIMIENTO — pega aquí tu código Meta / TikTok  -->
+<!--    (mira el archivo LEEME.md, sección "Instalar píxel")        -->
+<!-- ============================================================= -->
+
+<!-- === META PIXEL (Facebook / Instagram) ===
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'TU_PIXEL_ID_AQUI');
+fbq('track', 'PageView');
+</script>
+=== FIN META PIXEL === -->
+
+<!-- === TIKTOK PIXEL ===
+<script>
+!function (w, d, t) { w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+ttq.load('TU_TIKTOK_PIXEL_ID');
+ttq.page();
+}(window, document, 'ttq');
+</script>
+=== FIN TIKTOK PIXEL === -->
+
+<style>
+  :root{
+    --amarillo:#ffc510;     /* amarillo maquinaria (acento principal) */
+    --amarillo-osc:#d9a300;
+    --negro:#000000;
+    --acero:#0f1011;        /* FONDO PRINCIPAL = acero oscuro */
+    --acero2:#1a1b1d;       /* superficie de tarjetas */
+    --acero3:#242629;       /* superficie elevada */
+    --texto:#f1efe9;
+    --gris:#9c9a94;
+    --verde:#20a15e;        /* verde pago contraentrega */
+    --rojo:#e0503f;
+    --linea:rgba(255,255,255,.10);
+    --sombra:0 10px 30px rgba(0,0,0,.55);
+    --radio:14px;
+    --hazard:repeating-linear-gradient(-45deg,var(--amarillo) 0 14px,#111 14px 28px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    color:var(--texto);background:#050505;line-height:1.55;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+  .wrap{max-width:520px;margin:0 auto;background:var(--acero);position:relative}
+  .sec{padding:34px 20px}
+  h1,h2,h3{line-height:1.1}
+  h2{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+  h2 em{font-style:normal;color:var(--amarillo)}
+  .kicker{display:block;text-align:center;font-family:'Oswald',sans-serif;font-weight:600;
+    color:var(--amarillo);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px}
+
+  /* Cinta de peligro (separador temático) */
+  .hazard{height:10px;background:var(--hazard)}
+
+  /* Barra superior con texto en movimiento (marquee) — anclada arriba */
+  .topbar{background:var(--amarillo);color:#111;font-size:.78rem;
+    padding:9px 0;font-weight:700;letter-spacing:.02em;overflow:hidden;white-space:nowrap;
+    position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(0,0,0,.45)}
+  .topbar .track{display:inline-block;white-space:nowrap;animation:marquee 18s linear infinite}
+  .topbar .track span{padding:0 26px}
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.topbar .track{animation:none}}
+
+  /* HERO — compacto: foto + precio + colores + botón en la primera pantalla */
+  .hero{padding:8px 20px 4px;text-align:center;
+    background:radial-gradient(120% 60% at 50% 0%,#26282b 0%,var(--acero) 70%)}
+  .hero h1{font-family:'Oswald',sans-serif;font-weight:700;font-size:2.1rem;text-transform:uppercase;
+    letter-spacing:.02em;line-height:1.05;margin:2px 0 4px}
+  .hero h1 span{color:var(--amarillo)}
+  .hero .tagline{font-size:.78rem;color:var(--gris);letter-spacing:.04em;margin-bottom:2px}
+  .desc-elegante{margin:14px 0 4px;padding:14px 20px;background:var(--acero2);
+    border:1px solid var(--linea);border-left:3px solid var(--amarillo);border-radius:4px 14px 14px 4px;text-align:center}
+  .desc-elegante p{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.03em;font-size:1.05rem;line-height:1.35;color:var(--texto);margin:0}
+  .stars-inline{color:var(--amarillo);font-size:.8rem;margin-bottom:4px}
+  .stars-inline b{color:var(--texto)}
+
+  /* Galería protagonista (deslizable con el dedo) */
+  .hero-img{background:var(--acero2);border-radius:var(--radio);box-shadow:var(--sombra);
+    overflow:hidden;margin-bottom:6px;position:relative;border:1px solid var(--linea);
+    height:45vh;min-height:220px;max-height:470px;touch-action:pan-y}
+  .hero-img img{width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none;
+    filter:brightness(.9) contrast(1.06) saturate(1.04)}
+  .hero-img .zoom-tip{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.6);
+    color:#fff;font-size:.68rem;padding:4px 9px;border-radius:20px;pointer-events:none}
+  .hero-img .badge-cuero{position:absolute;top:10px;left:10px;background:var(--amarillo);color:#111;
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.08em;
+    padding:4px 10px;border-radius:6px;text-transform:uppercase;z-index:2}
+  .foto-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;
+    gap:6px;padding:20px;text-align:center;color:var(--texto);font-weight:600;font-size:.85rem;
+    background:repeating-linear-gradient(45deg,#1c1d1f,#1c1d1f 12px,#16171a 12px,#16171a 24px)}
+  .foto-ph .ic{font-size:3rem}
+  .foto-ph small{font-weight:400;color:var(--gris);font-size:.72rem}
+  .hero-img.sin-foto .foto-ph{display:flex}
+  .hero-img.sin-foto img{visibility:hidden}
+  .thumbs{display:flex;gap:10px;margin:4px 0 14px;overflow-x:auto;padding:2px 0 6px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .thumbs::-webkit-scrollbar{display:none}
+  .thumb{flex:0 0 64px;width:64px;height:64px;border-radius:10px;overflow:hidden;
+    border:2px solid var(--linea);cursor:pointer;background:var(--acero2);padding:0;transition:.15s}
+  .thumb.act{border-color:var(--amarillo)}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+
+  /* Selector de color (4 variantes, en cuadrícula 2x2) */
+  .color-wrap{margin:4px 0}
+  .color-title{font-size:.78rem;color:var(--gris);margin-bottom:5px;text-align:left}
+  .color-title b{color:var(--texto)}
+  .colores{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .color-op{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;
+    border:2px solid var(--linea);border-radius:10px;padding:6px 4px;transition:.2s;background:var(--acero2);color:var(--texto)}
+  .color-op.act{border-color:var(--amarillo);background:rgba(255,197,16,.10)}
+  .swatch{width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.25);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+  .sw-negra{background:#161616}
+  .sw-oro{background:linear-gradient(135deg,#e2b54a,#a7771b)}
+  .sw-cafe{background:linear-gradient(135deg,#6b4428,#3c2414)}
+  .sw-avellana{background:linear-gradient(135deg,#b88a5e,#7f5733)}
+  .color-op span{font-size:.74rem;font-weight:600}
+
+  /* Precio */
+  .precio-box{margin:4px 0;background:var(--acero2);border:1px solid var(--linea);
+    border-radius:12px;padding:6px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .precio-left{text-align:left}
+  .precio-new{color:#fff;font-family:'Oswald',sans-serif;font-size:1.7rem;font-weight:700;line-height:1}
+  .precio-old{color:var(--gris);text-decoration:line-through;font-size:.74rem;display:block;margin-top:2px}
+  .precio-off{background:var(--rojo);color:#fff;font-weight:800;font-size:.9rem;
+    padding:5px 10px;border-radius:8px;white-space:nowrap}
+
+  /* Botón CTA */
+  .cta{display:block;width:100%;background:var(--amarillo);color:#111;text-align:center;
+    font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:700;padding:16px;border:none;border-radius:12px;
+    text-decoration:none;cursor:pointer;box-shadow:0 8px 20px rgba(255,197,16,.28);
+    text-transform:uppercase;letter-spacing:.04em;animation:pulse 2s infinite;transition:.15s}
+  .cta:active{transform:scale(.98)}
+  .cta small{display:block;font-family:'Segoe UI',system-ui,sans-serif;font-size:.72rem;font-weight:600;
+    text-transform:none;letter-spacing:0;opacity:.8;margin-top:2px}
+  @keyframes pulse{0%{box-shadow:0 8px 20px rgba(255,197,16,.25)}50%{box-shadow:0 8px 32px rgba(255,197,16,.55)}100%{box-shadow:0 8px 20px rgba(255,197,16,.25)}}
+  .cta-note{text-align:center;font-size:.78rem;color:var(--gris);margin-top:10px}
+  .hero .cta{padding:9px;font-size:1.05rem}
+  .hero .cta small{font-size:.66rem}
+  .hero .cta-note{margin-top:4px;font-size:.7rem}
+
+  /* Especificaciones rápidas (chips) */
+  .specs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:2px 0 6px}
+  .spec{background:var(--acero3);border:1px solid var(--linea);border-radius:20px;
+    font-size:.72rem;font-weight:600;padding:4px 10px;color:var(--texto)}
+  .spec b{color:var(--amarillo)}
+
+  /* Beneficios */
+  .beneficios{background:var(--acero2)}
+  .beneficios h2{text-align:center;font-size:1.45rem;margin-bottom:20px}
+  .ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .ben{background:var(--acero);border:1px solid var(--linea);border-radius:12px;padding:16px 12px;text-align:center}
+  .ben .ic{font-size:1.8rem;margin-bottom:6px}
+  .ben b{display:block;font-size:.92rem;margin-bottom:3px;color:var(--amarillo)}
+  .ben span{font-size:.78rem;opacity:.85}
+
+  /* Anatomía de la bota */
+  .anat h2{text-align:center;font-size:1.5rem;margin-bottom:6px}
+  .anat .sub{text-align:center;color:var(--gris);font-size:.92rem;margin-bottom:20px}
+  .feat{display:flex;gap:14px;align-items:flex-start;background:var(--acero2);border:1px solid var(--linea);
+    border-left:4px solid var(--amarillo);border-radius:12px;padding:16px;margin-bottom:12px}
+  .feat .num{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.9rem;color:var(--amarillo);line-height:1;flex:0 0 40px}
+  .feat b{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:1.1rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:3px}
+  .feat p{font-size:.86rem;color:var(--gris)}
+
+  /* Sectores de trabajo (imágenes grandes con texto encima) */
+  .uso h2{text-align:center;font-size:1.5rem;margin-bottom:6px}
+  .uso .sub{text-align:center;color:var(--gris);margin-bottom:20px;font-size:.95rem}
+  .uso-titulo{background:var(--acero2);border:1px solid var(--linea);border-radius:14px;
+    padding:18px 16px;margin-bottom:20px}
+  .uso-titulo .sub{margin-bottom:0}
+  .uso-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  .uso-card{position:relative;border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra);
+    aspect-ratio:4/3;border:1px solid var(--linea)}
+  .uso-card .bg{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:flex-end;
+    padding:18px 22px;font-size:5.5rem;line-height:1}
+  .uso-card.construccion .bg{background:linear-gradient(135deg,#3a3326,#15130f)}
+  .uso-card.mecanica .bg{background:linear-gradient(135deg,#2b3038,#101216)}
+  .uso-card.soldadura .bg{background:radial-gradient(80% 90% at 80% 20%,#6b3a12,#1a0f07 70%)}
+  .uso-card.campo .bg{background:linear-gradient(135deg,#2f3524,#11140c)}
+  .uso-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}
+  .uso-card .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 18px 18px;
+    background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.45) 55%,transparent);color:#fff;text-align:left}
+  .uso-card .cap b{display:block;font-family:'Oswald',sans-serif;font-weight:700;
+    font-size:1.85rem;line-height:1.05;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+  .uso-card .cap span{display:block;margin-top:5px;font-family:'Oswald',sans-serif;font-weight:500;font-size:1rem;opacity:.95}
+  .uso-card .tagpill{position:absolute;top:14px;left:14px;z-index:2;background:var(--amarillo);
+    color:#111;font-family:'Oswald',sans-serif;font-size:.8rem;font-weight:700;padding:5px 13px;
+    border-radius:6px;text-transform:uppercase;letter-spacing:.08em}
+
+  /* Video del producto (se muestra solo si existe video/campero.mp4) */
+  .video-sec{background:var(--acero2);display:none}
+  .video-sec.on{display:block}
+  .video-sec h2{text-align:center;font-size:1.45rem;margin-bottom:6px}
+  .video-sec .sub{text-align:center;color:var(--gris);margin-bottom:18px;font-size:.92rem}
+  .video-box{position:relative;background:#000;border-radius:var(--radio);overflow:hidden;
+    box-shadow:var(--sombra);aspect-ratio:9/16;width:100%;margin:0 auto}
+  .video-box video{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* Garantía banner */
+  .gar-banner{background:var(--amarillo);color:#111;text-align:center;padding:26px 20px}
+  .gar-banner .ic{font-size:2.4rem}
+  .gar-banner h2{font-size:1.6rem;margin:6px 0 4px}
+  .gar-banner p{font-size:.95rem;font-weight:600}
+
+  /* Tablas */
+  .tallas h2,.comp h2{text-align:center;font-size:1.45rem;margin-bottom:6px}
+  .tallas .sub{text-align:center;color:var(--gris);margin-bottom:18px;font-size:.9rem}
+  .comp h2{margin-bottom:18px}
+  table{width:100%;border-collapse:collapse;background:var(--acero2);border-radius:12px;overflow:hidden;box-shadow:var(--sombra)}
+  th,td{padding:11px 8px;text-align:center;font-size:.86rem;border-bottom:1px solid var(--linea)}
+  th{background:#000;color:#fff;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+  tr:last-child td{border-bottom:none}
+  .tallas td:first-child{font-weight:700;color:var(--amarillo)}
+  .tallas-tip{font-size:.8rem;color:var(--gris);text-align:center;margin-top:12px}
+  .comp-table td,.comp-table th{text-align:left;padding:12px 10px}
+  .comp-table th:nth-child(n+2),.comp-table td:nth-child(n+2){text-align:center}
+  .comp-yes{color:var(--verde);font-weight:800}
+  .comp-no{color:var(--rojo);font-weight:800}
+  .comp-col-us{background:rgba(255,197,16,.12)}
+
+  /* Números / prueba social — sello de pedidos + calificación con check verde, uno al lado del otro */
+  .stats{background:var(--negro);color:#fff;padding:18px 14px;
+    display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px}
+  .sello-pedidos{width:152px;height:152px;flex:0 0 152px;border-radius:50%;position:relative;
+    border:3px solid var(--amarillo);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;background:radial-gradient(circle,rgba(255,197,16,.10),transparent 70%)}
+  .sello-pedidos::before{content:'';position:absolute;inset:7px;border:1px solid rgba(255,197,16,.55);border-radius:50%}
+  .sello-pedidos b{font-family:'Oswald',sans-serif;font-size:1.8rem;color:#fff;font-weight:700;line-height:1}
+  .sello-pedidos span{font-size:.66rem;color:var(--amarillo);text-transform:uppercase;
+    letter-spacing:.07em;font-weight:700;margin-top:6px;line-height:1.3}
+  .badge-rating{display:flex;flex-direction:row;align-items:center;gap:8px;background:rgba(32,161,94,.15);
+    border:1.5px solid var(--verde);border-radius:18px;padding:12px 14px}
+  .badge-rating .check{font-size:1.3rem}
+  .badge-rating-txt{text-align:left}
+  .badge-rating-txt b{display:block;color:#fff;font-size:1.15rem;font-weight:800;white-space:nowrap}
+  .badge-rating-txt .stars{color:var(--amarillo);font-size:.95rem;margin-left:3px}
+  .badge-rating-txt span{font-size:.72rem;color:var(--gris);white-space:nowrap}
+
+  /* Recuadro blanco de contraste (segundo CTA) */
+  .callout-blanco{background:#fff;border-radius:14px;padding:20px 18px;margin-bottom:18px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .callout-blanco h2{font-size:1.4rem;color:#111;margin-bottom:6px}
+  .callout-blanco h2 em{color:#111;background:var(--amarillo);padding:0 6px}
+  .callout-blanco p{color:#555;font-size:.9rem;margin:0}
+
+  /* Testimonios (carrusel 1 a 1) */
+  .testi h2{text-align:center;font-size:1.45rem;margin-bottom:18px}
+  .carousel{overflow:hidden;border-radius:12px}
+  .carousel-track{display:flex;transition:transform .5s ease}
+  .slide{flex:0 0 100%;padding:2px}
+  .card-t{background:var(--acero2);border:1px solid var(--linea);border-radius:12px;padding:16px;box-shadow:var(--sombra)}
+  .card-t-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .avatar{width:48px;height:48px;border-radius:50%;flex:0 0 48px;object-fit:cover;
+    border:2px solid var(--amarillo);background:var(--acero2)}
+  .card-t .nombre{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .card-t .ciudad{font-size:.74rem;color:var(--gris)}
+  .card-t .stars{color:var(--amarillo);font-size:.82rem}
+  .card-t p{font-size:.86rem}
+  .verificado{color:var(--verde);font-weight:600}
+
+  /* Marcas */
+  .marcas{text-align:center}
+  .marcas h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gris);margin-bottom:18px;font-weight:600}
+  .marcas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .marca{height:66px;border:1px solid var(--linea);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;background:var(--acero2);padding:8px;overflow:hidden;
+    text-decoration:none;cursor:pointer;transition:.15s}
+  .marca:active{transform:scale(.96)}
+  .marca:hover{border-color:var(--amarillo)}
+  .marca img{max-height:44px;max-width:100%;object-fit:contain}
+  .marca .txt{font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.04em;color:var(--texto);font-size:.95rem;line-height:1.1}
+
+  /* Bono / countdown */
+  .bono{background:linear-gradient(160deg,#1f1a0c,#0c0c0c);color:#fff;text-align:center}
+  .bono .tag{display:inline-block;background:var(--rojo);color:#fff;font-size:.72rem;font-weight:700;
+    padding:5px 12px;border-radius:30px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+  .bono h2{font-size:1.6rem;margin-bottom:6px}
+  .bono h2 span{color:var(--amarillo)}
+  .bono p{opacity:.9;font-size:.92rem;margin-bottom:18px}
+  .countdown{display:flex;gap:8px;justify-content:center;margin-bottom:8px}
+  .cd-box{background:var(--amarillo);color:#111;border-radius:8px;padding:10px 6px;min-width:64px}
+  .cd-box b{display:block;font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;line-height:1}
+  .cd-box span{font-size:.62rem;text-transform:uppercase;font-weight:700;letter-spacing:.05em}
+  .cd-label{font-size:.78rem;opacity:.8;margin-bottom:18px}
+
+  /* Formulario */
+  .form-sec{background:var(--acero2)}
+  .form-sec h2{text-align:center;font-size:1.6rem;margin-bottom:4px}
+  .form-sec .sub{text-align:center;color:var(--gris);margin-bottom:20px;font-size:.92rem}
+  form{background:var(--acero);border:1px solid var(--linea);border-top:4px solid var(--amarillo);border-radius:14px;padding:20px;box-shadow:var(--sombra)}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;color:var(--gris)}
+  .field input,.field select,.field textarea{width:100%;padding:13px;border:1.5px solid var(--linea);
+    border-radius:10px;font-size:1rem;font-family:inherit;background:var(--acero2);color:var(--texto)}
+  .field input::placeholder,.field textarea::placeholder{color:#66645f}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--amarillo)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .resumen{background:var(--acero2);border:1px solid var(--linea);border-radius:10px;padding:14px;margin-bottom:16px;font-size:.9rem}
+  .resumen .r-line{display:flex;justify-content:space-between;margin-bottom:4px}
+  .resumen .r-total{display:flex;justify-content:space-between;font-weight:800;font-size:1.1rem;
+    border-top:1px dashed var(--linea);padding-top:8px;margin-top:8px}
+  .req{color:var(--rojo)}
+
+  /* Proceso de compra */
+  .proceso{background:var(--negro)}
+  .proceso h2{text-align:center;font-size:1.45rem;margin-bottom:24px}
+  .paso{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start}
+  .paso .num{flex:0 0 40px;width:40px;height:40px;border-radius:8px;background:var(--amarillo);
+    color:#111;font-family:'Oswald',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .paso b{display:block;font-size:1rem;color:var(--amarillo);margin-bottom:2px}
+  .paso .fecha{font-size:.78rem;opacity:.6;font-weight:600}
+  .paso p{font-size:.86rem;opacity:.85}
+
+  /* Footer */
+  footer{background:#080808;color:#fff;text-align:center;padding:30px 20px;font-size:.8rem}
+  footer a{color:var(--amarillo);text-decoration:none}
+  footer .legal{opacity:.5;font-size:.72rem;margin-top:14px;line-height:1.5}
+
+  /* Barra fija móvil */
+  .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:#111;
+    border-top:3px solid var(--amarillo);box-shadow:0 -4px 20px rgba(0,0,0,.6);padding:10px 16px;display:none;
+    align-items:center;gap:12px;max-width:520px;margin:0 auto}
+  .sticky-bar .p{flex:1}
+  .sticky-bar .p b{display:block;color:#fff;font-family:'Oswald',sans-serif;font-size:1.35rem;font-weight:700;line-height:1}
+  .sticky-bar .p s{font-size:.75rem;color:var(--gris)}
+  .sticky-bar a{background:var(--amarillo);color:#111;font-family:'Oswald',sans-serif;font-weight:700;padding:12px 20px;
+    border-radius:10px;text-decoration:none;font-size:1rem;text-transform:uppercase;white-space:nowrap}
+  body.scrolled .sticky-bar{display:flex}
+  @media(min-width:521px){.sticky-bar{display:none!important}}
+  .space-sticky{height:70px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Barra superior con texto en movimiento -->
+  <div class="topbar">
+    <div class="track">
+      <span>🚚 ENVÍO GRATIS + PAGO CONTRAENTREGA en toda Colombia 🇨🇴</span>
+      <span>🎁 REGALO HOY: par de medias GRATIS con tu compra</span>
+      <span>🛡️ GARANTÍA EXTENDIDA 3+ meses</span>
+      <!-- copia idéntica para que el bucle sea continuo -->
+      <span>🚚 ENVÍO GRATIS + PAGO CONTRAENTREGA en toda Colombia 🇨🇴</span>
+      <span>🎁 REGALO HOY: par de medias GRATIS con tu compra</span>
+      <span>🛡️ GARANTÍA EXTENDIDA 3+ meses</span>
+    </div>
+  </div>
+
+  <!-- ========== 1. HERO ========== -->
+  <section class="hero">
+
+    <!-- 📸 GALERÍA PROTAGONISTA — 5 fotos por color (ver GALERIA en el script de abajo) -->
+    <div class="hero-img" id="hero-img">
+      <span class="badge-cuero">100% Cuero</span>
+      <img id="foto-principal" alt="Bota CAT Campero Negra">
+      <div class="foto-ph">
+        <div class="ic">🥾</div>
+        <div>FOTO DEL PRODUCTO</div>
+        <small id="foto-ph-nombre">Sube img/campero-negra-1.jpg</small>
+      </div>
+      <span class="zoom-tip" id="swipe-hint">👉 Desliza</span>
+    </div>
+
+    <p class="tagline">HECHA PARA EL TRABAJO RUDO</p>
+    <h1><span>CAT Campero</span></h1>
+    <div class="stars-inline">★★★★★ <b>4.9</b> · +80.000 clientes felices</div>
+
+    <!-- Precio -->
+    <div class="precio-box">
+      <div class="precio-left">
+        <span class="precio-new">$160.000</span>
+        <span class="precio-old">Antes $299.000</span>
+      </div>
+      <span class="precio-off">-46%</span>
+    </div>
+
+    <!-- Selector de color -->
+    <div class="color-wrap">
+      <div class="color-title">Color: <b id="color-name">Negra</b></div>
+      <div class="colores">
+        <div class="color-op act" data-color="Negra" onclick="setColor(this)"><div class="swatch sw-negra"></div><span>Negra</span></div>
+        <div class="color-op" data-color="Oro" onclick="setColor(this)"><div class="swatch sw-oro"></div><span>Oro</span></div>
+        <div class="color-op" data-color="Café" onclick="setColor(this)"><div class="swatch sw-cafe"></div><span>Café</span></div>
+        <div class="color-op" data-color="Avellana" onclick="setColor(this)"><div class="swatch sw-avellana"></div><span>Avellana</span></div>
+      </div>
+    </div>
+
+    <!-- 2. CTA principal -->
+    <a href="#comprar" class="cta">¡Las quiero ya!
+      <small>Paga cuando las recibas en casa</small></a>
+    <p class="cta-note">🔒 Compra segura · Sin pagos por adelantado</p>
+
+    <div class="thumbs" id="thumbs"><!-- miniaturas generadas automáticamente --></div>
+
+    <div class="specs">
+      <span class="spec"><b>✔</b> 100% cuero</span>
+      <span class="spec"><b>✔</b> Suela de caucho</span>
+      <span class="spec"><b>✔</b> Sin cordones</span>
+    </div>
+    <div class="desc-elegante">
+      <p>La bota que aguanta la obra, el taller y la chispa. Cuero de verdad y una suela que no se rinde.</p>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- ========== 3. BENEFICIOS ========== -->
+  <section class="sec beneficios">
+    <h2>Beneficios de <em>comprar hoy</em></h2>
+    <div class="ben-grid">
+      <div class="ben"><div class="ic">🚚</div><b>Envío gratis</b><span>Pago contraentrega en todo el país</span></div>
+      <div class="ben"><div class="ic">🧦</div><b>Regalo de hoy</b><span>Par de medias GRATIS</span></div>
+      <div class="ben"><div class="ic">🛡️</div><b>Garantía extendida</b><span>3+ meses de cobertura real</span></div>
+      <div class="ben"><div class="ic">↩️</div><b>Cambios fáciles</b><span>Cambio de talla sin costo</span></div>
+    </div>
+  </section>
+
+  <!-- ========== ANATOMÍA DE LA BOTA ========== -->
+  <section class="sec anat">
+    <span class="kicker">Construida para durar</span>
+    <h2>Así está <em>hecha</em></h2>
+    <p class="sub">Tres cosas que la hacen aguantar jornadas completas</p>
+
+    <div class="feat">
+      <div class="num">01</div>
+      <div><b>100% cuero</b><p>Capellada completa en cuero: resiste roces, golpes, polvo y grasa del día a día, y se amolda a tu pie con el uso.</p></div>
+    </div>
+    <div class="feat">
+      <div class="num">02</div>
+      <div><b>Suela de caucho de alta resistencia</b><p>Taco profundo con buen agarre en tierra, gravilla, concreto y pisos de taller. Hecha para caminar y cargar todo el día.</p></div>
+    </div>
+    <div class="feat">
+      <div class="num">03</div>
+      <div><b>Sin cordones</b><p>Te la pones y te la quitas en segundos. Nada que se desamarre, se enrede en una máquina o se queme con una chispa.</p></div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- ========== SECTORES DE TRABAJO ========== -->
+  <!-- 📸 Opcional: sube fotos de la bota en cada ambiente como img/uso-1.jpg … img/uso-4.jpg
+       y reemplazan el fondo automáticamente. Sin foto, la tarjeta se ve con su fondo temático. -->
+  <section class="sec uso">
+    <div class="uso-titulo">
+      <span class="kicker">Donde el trabajo es pesado</span>
+      <h2>Lista para <em>tu oficio</em></h2>
+      <p class="sub">Construcción, taller, soldadura y campo</p>
+    </div>
+    <div class="uso-grid">
+
+      <div class="uso-card construccion">
+        <div class="bg">🏗️</div>
+        <img src="img/uso-1.jpg" alt="Bota CAT Campero en obra de construcción" onerror="this.remove()">
+        <span class="tagpill">Construcción</span>
+        <div class="cap"><b>Firme en la obra</b><span>Concreto, varilla y escombro sin miedo</span></div>
+      </div>
+
+      <div class="uso-card mecanica">
+        <div class="bg">🔧</div>
+        <img src="img/uso-2.jpg" alt="Bota CAT Campero en taller mecánico" onerror="this.remove()">
+        <span class="tagpill">Mecánica</span>
+        <div class="cap"><b>Hecha para el taller</b><span>Cuero que aguanta grasa, aceite y horas de pie</span></div>
+      </div>
+
+      <div class="uso-card soldadura">
+        <div class="bg">🔥</div>
+        <img src="img/uso-3.jpg" alt="Bota CAT Campero en trabajo de soldadura" onerror="this.remove()">
+        <span class="tagpill">Soldadura</span>
+        <div class="cap"><b>Sin cordones que se quemen</b><span>Diseño liso, nada que atrape la chispa</span></div>
+      </div>
+
+      <div class="uso-card campo">
+        <div class="bg">⛰️</div>
+        <img src="img/uso-4.jpg" alt="Bota CAT Campero en terreno de campo" onerror="this.remove()">
+        <span class="tagpill">Todo terreno</span>
+        <div class="cap"><b>Agarre en cualquier piso</b><span>Barro, gravilla y pendiente, la suela responde</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== VIDEO DEL PRODUCTO ========== -->
+  <!-- 📹 Sube tu video comprimido (HandBrake) como: video/campero.mp4 (vertical 9:16).
+       Esta sección permanece oculta hasta que el video exista. -->
+  <section class="sec video-sec" id="video-sec">
+    <h2>Mírala <em>en acción</em></h2>
+    <p class="sub">Así se ve la CAT Campero por dentro y por fuera</p>
+    <div id="video-wrap"></div>
+  </section>
+
+  <!-- ========== GARANTÍA BANNER ========== -->
+  <section class="gar-banner">
+    <div class="ic">🛡️</div>
+    <h2>Garantía extendida 3+ meses</h2>
+    <p>Si algo falla en tu par por defecto de fábrica, te lo cambiamos.</p>
+  </section>
+
+  <!-- ========== TABLA DE TALLAS ========== -->
+  <section class="sec tallas">
+    <h2>Tabla de <em>tallas</em></h2>
+    <p class="sub">Mide tu pie en cm y elige tu talla exacta</p>
+    <table>
+      <tr><th>Talla COL</th><th>Longitud del pie</th><th>EU</th></tr>
+      <tr><td>37</td><td>24.0 cm</td><td>37</td></tr>
+      <tr><td>38</td><td>24.5 cm</td><td>38</td></tr>
+      <tr><td>39</td><td>25.0 cm</td><td>39</td></tr>
+      <tr><td>40</td><td>25.5 cm</td><td>40</td></tr>
+      <tr><td>41</td><td>26.5 cm</td><td>41</td></tr>
+      <tr><td>42</td><td>27.0 cm</td><td>42</td></tr>
+      <tr><td>43</td><td>28.0 cm</td><td>43</td></tr>
+      <tr><td>44</td><td>28.5 cm</td><td>44</td></tr>
+    </table>
+    <p class="tallas-tip">💡 Si usas medias gruesas de trabajo, pide tu talla normal. ¿Dudas? Escríbenos por WhatsApp.</p>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- ========== COMPARACIÓN ========== -->
+  <section class="sec comp">
+    <h2>¿Por qué <em>elegirnos</em>?</h2>
+    <table class="comp-table">
+      <tr><th>Característica</th><th class="comp-col-us">Nosotros</th><th>Botas genéricas</th></tr>
+      <tr><td>100% cuero</td><td class="comp-col-us comp-yes">✔</td><td class="comp-no">✗</td></tr>
+      <tr><td>Suela de caucho de alta resistencia</td><td class="comp-col-us comp-yes">✔</td><td class="comp-no">✗</td></tr>
+      <tr><td>Sin cordones (puesta rápida)</td><td class="comp-col-us comp-yes">✔</td><td class="comp-no">✗</td></tr>
+      <tr><td>Envío gratis + contraentrega</td><td class="comp-col-us comp-yes">✔</td><td class="comp-no">✗</td></tr>
+      <tr><td>Garantía 3+ meses</td><td class="comp-col-us comp-yes">✔</td><td class="comp-no">✗</td></tr>
+      <tr><td>Precio justo</td><td class="comp-col-us comp-yes">✔</td><td class="comp-no">$$$</td></tr>
+    </table>
+  </section>
+
+  <!-- ========== NÚMEROS ========== -->
+  <section class="stats">
+    <div class="sello-pedidos">
+      <b>+80.000</b>
+      <span>Pedidos<br>entregados</span>
+    </div>
+    <div class="badge-rating">
+      <span class="check">✅</span>
+      <div class="badge-rating-txt">
+        <b>4.9 <span class="stars">★★★★★</span></b>
+        <span>Calificación promedio</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIOS (carrusel 1 a 1) ========== -->
+  <!-- 📸 Cambia los src por fotos REALES de tus clientes (img/cliente-1.jpg, etc.).
+       Las de abajo son fotografías de banco libre, solo de ejemplo. -->
+  <section class="sec testi">
+    <h2>Lo que dicen <em>los que trabajan</em></h2>
+
+    <div class="carousel">
+      <div class="carousel-track" id="testi-track">
+
+        <div class="slide"><div class="card-t"><div class="card-t-top">
+          <img class="avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&q=80&auto=format&fit=crop" alt="Jhon Fredy Ruiz">
+          <div><div class="nombre">Jhon Fredy Ruiz <span class="stars">★★★★★</span></div>
+          <div class="ciudad">Maestro de obra · Bogotá · <span class="verificado">✔ Verificada</span></div></div>
+        </div><p>"Llevo tres meses en obra con ellas, entre barro y concreto, y la suela está entera. El cuero aguanta lo que le eche."</p></div></div>
+
+        <div class="slide"><div class="card-t"><div class="card-t-top">
+          <img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&q=80&auto=format&fit=crop" alt="Óscar Benítez">
+          <div><div class="nombre">Óscar Benítez <span class="stars">★★★★★</span></div>
+          <div class="ciudad">Soldador · Barrancabermeja · <span class="verificado">✔ Verificada</span></div></div>
+        </div><p>"Lo mejor es que no tienen cordones. Antes se me quemaban con la chispa, con estas ya no me preocupo."</p></div></div>
+
+        <div class="slide"><div class="card-t"><div class="card-t-top">
+          <img class="avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&q=80&auto=format&fit=crop" alt="Wilson Cárdenas">
+          <div><div class="nombre">Wilson Cárdenas <span class="stars">★★★★★</span></div>
+          <div class="ciudad">Mecánico · Medellín · <span class="verificado">✔ Verificada</span></div></div>
+        </div><p>"En el taller cae de todo: aceite, grasa, herramientas. Las limpio con un trapo y quedan como nuevas. Pedí las café."</p></div></div>
+
+        <div class="slide"><div class="card-t"><div class="card-t-top">
+          <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&q=80&auto=format&fit=crop" alt="Paola Rincón">
+          <div><div class="nombre">Paola Rincón <span class="stars">★★★★★</span></div>
+          <div class="ciudad">Cali · <span class="verificado">✔ Verificada</span></div></div>
+        </div><p>"Se las compré a mi esposo que trabaja en construcción. Pagué al recibir, llegaron en 4 días y la talla perfecta."</p></div></div>
+
+        <div class="slide"><div class="card-t"><div class="card-t-top">
+          <img class="avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&q=80&auto=format&fit=crop" alt="Edwin Mosquera">
+          <div><div class="nombre">Edwin Mosquera <span class="stars">★★★★★</span></div>
+          <div class="ciudad">Operario · Barranquilla · <span class="verificado">✔ Verificada</span></div></div>
+        </div><p>"Me paso 10 horas de pie y no me maltratan. Las avellana se ven muy bien también para salir."</p></div></div>
+
+        <div class="slide"><div class="card-t"><div class="card-t-top">
+          <img class="avatar" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=120&h=120&q=80&auto=format&fit=crop" alt="Andrés Villamil">
+          <div><div class="nombre">Andrés Villamil <span class="stars">★★★★★</span></div>
+          <div class="ciudad">Finca · Tunja · <span class="verificado">✔ Verificada</span></div></div>
+        </div><p>"Para el campo son una maravilla. Agarran bien en la loma mojada y no se despegan. Ya pedí otro par en oro."</p></div></div>
+
+        <div class="slide"><div class="card-t"><div class="card-t-top">
+          <img class="avatar" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=120&h=120&q=80&auto=format&fit=crop" alt="Camilo Pardo">
+          <div><div class="nombre">Camilo Pardo <span class="stars">★★★★★</span></div>
+          <div class="ciudad">Electricista · Bucaramanga · <span class="verificado">✔ Verificada</span></div></div>
+        </div><p>"Cuero grueso de verdad, se nota apenas las coge. La negra combina con el uniforme. Excelente precio."</p></div></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEGUNDO CTA ========== -->
+  <section class="sec" style="text-align:center;background:var(--acero2)">
+    <div class="callout-blanco">
+      <h2>Únete a los <em>+80.000 clientes</em></h2>
+      <p>Aprovecha el precio de hoy antes de que suba</p>
+    </div>
+    <a href="#comprar" class="cta">Comprar ahora — $160.000
+      <small>Envío gratis · Paga al recibir</small></a>
+  </section>
+
+  <!-- ========== MARCAS ========== -->
+  <section class="sec marcas">
+    <h3>Marcas que manejamos</h3>
+    <!-- 📸 Pon el logo real en img/ (ej: img/logo-cat.png). Si no existe, se muestra el nombre. -->
+    <div class="marcas-grid">
+      <a class="marca" data-marca="CAT" target="_blank" rel="noopener"><img src="img/logo-cat.png" alt="CAT" onerror="this.outerHTML='<span class=&quot;txt&quot;>CAT</span>'"></a>
+      <a class="marca" data-marca="Timberland" target="_blank" rel="noopener"><img src="img/logo-timberland.png" alt="Timberland" onerror="this.outerHTML='<span class=&quot;txt&quot;>TIMBERLAND</span>'"></a>
+      <a class="marca" data-marca="Brahma" target="_blank" rel="noopener"><img src="img/logo-brahma.png" alt="Brahma" onerror="this.outerHTML='<span class=&quot;txt&quot;>BRAHMA</span>'"></a>
+      <a class="marca" data-marca="Oakley" target="_blank" rel="noopener"><img src="img/logo-oakley.png" alt="Oakley" onerror="this.outerHTML='<span class=&quot;txt&quot;>OAKLEY</span>'"></a>
+      <a class="marca" data-marca="Under Armour" target="_blank" rel="noopener"><img src="img/logo-under.png" alt="Under Armour" onerror="this.outerHTML='<span class=&quot;txt&quot;>UNDER<br>ARMOUR</span>'"></a>
+      <a class="marca" data-marca="Vélez" target="_blank" rel="noopener"><img src="img/logo-velez.png" alt="Vélez" onerror="this.outerHTML='<span class=&quot;txt&quot;>VÉLEZ</span>'"></a>
+    </div>
+    <p style="font-size:.74rem;color:var(--gris);margin-top:14px">👆 Toca una marca y te enviamos fotos e info por WhatsApp</p>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- ========== BONO + CONTADOR ========== -->
+  <section class="sec bono">
+    <span class="tag">🎁 Bono de hoy</span>
+    <h2>Lleva un <span>par de medias GRATIS</span></h2>
+    <p>Solo para los pedidos que se hagan hoy. La oferta termina en:</p>
+    <div class="countdown">
+      <div class="cd-box"><b id="cd-m">15</b><span>Min</span></div>
+      <div class="cd-box"><b id="cd-s">00</b><span>Seg</span></div>
+    </div>
+    <p class="cd-label">⏳ El regalo se retira automáticamente cuando el contador llegue a cero</p>
+    <a href="#comprar" class="cta">Reclamar mi regalo</a>
+  </section>
+
+  <!-- ========== FORMULARIO ========== -->
+  <section class="sec form-sec" id="comprar">
+    <h2>Completa tu <em>pedido</em></h2>
+    <p class="sub">Llena tus datos · Paga cuando recibas el producto</p>
+
+    <form id="form-compra" onsubmit="return prepararEnvio(event)">
+
+      <div class="resumen">
+        <div class="r-line"><span>Producto</span><span><b>Bota CAT Campero</b></span></div>
+        <div class="r-line"><span>Color</span><span id="res-color">Negra</span></div>
+        <div class="r-line"><span>Regalo</span><span>🧦 Par de medias</span></div>
+        <div class="r-total"><span>Total a pagar</span><span>$160.000</span></div>
+      </div>
+
+      <div class="field">
+        <label>Nombre completo <span class="req">*</span></label>
+        <input type="text" name="nombre" required placeholder="Tu nombre y apellido">
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Color <span class="req">*</span></label>
+          <select name="color" id="sel-color" required onchange="syncColor()">
+            <option value="Negra">Negra</option>
+            <option value="Oro">Oro</option>
+            <option value="Café">Café</option>
+            <option value="Avellana">Avellana</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Talla <span class="req">*</span></label>
+          <select name="talla" required>
+            <option value="">Elige</option>
+            <option>37</option><option>38</option><option>39</option><option>40</option>
+            <option>41</option><option>42</option><option>43</option><option>44</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Celular / WhatsApp <span class="req">*</span></label>
+        <input type="tel" name="celular" required placeholder="Ej: 300 123 4567" pattern="[0-9 ]{7,15}">
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Departamento <span class="req">*</span></label>
+          <input type="text" name="departamento" required placeholder="Ej: Antioquia">
+        </div>
+        <div class="field">
+          <label>Ciudad <span class="req">*</span></label>
+          <input type="text" name="ciudad" required placeholder="Ej: Medellín">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Dirección de entrega <span class="req">*</span></label>
+        <input type="text" name="direccion" required placeholder="Calle, carrera, # y barrio">
+      </div>
+
+      <div class="field">
+        <label>Referencia / notas (opcional)</label>
+        <textarea name="notas" rows="2" placeholder="Ej: casa esquinera, portería, etc."></textarea>
+      </div>
+
+      <button type="submit" class="cta">Confirmar mi pedido
+        <small>Pago contraentrega · Envío gratis</small></button>
+      <p class="cta-note">Al confirmar, te contactamos por WhatsApp para agendar la entrega.</p>
+    </form>
+  </section>
+
+  <!-- ========== PROCESO DE COMPRA ========== -->
+  <section class="sec proceso">
+    <h2>Así de fácil es <em>tu compra</em></h2>
+    <div class="paso">
+      <div class="num">1</div>
+      <div><b>Hoy</b> <span class="fecha" id="p-hoy"></span><p>Confirmas tu pedido con tus datos. Recibes confirmación por WhatsApp.</p></div>
+    </div>
+    <div class="paso">
+      <div class="num">2</div>
+      <div><b>Mañana</b> <span class="fecha" id="p-manana"></span><p>Empacamos tus botas y las despachamos a tu ciudad.</p></div>
+    </div>
+    <div class="paso">
+      <div class="num">3</div>
+      <div><b>En ~5 días</b> <span class="fecha" id="p-entrega"></span><p>Recibes tu pedido en tu dirección y pagas al mensajero. ¡Listo!</p></div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <p>Botas 100% cuero · Envío a toda Colombia</p>
+    <p style="margin-top:10px">📲 ¿Dudas? <a href="https://wa.me/573224018992" target="_blank">Escríbenos por WhatsApp</a></p>
+    <p class="legal">
+      Envío gratis a todo Colombia · Pago contraentrega · Garantía extendida 3+ meses.<br>
+      © 2026 Todos los derechos reservados. Ver <a href="gracias.html#politicas">políticas de garantía</a>.
+    </p>
+  </footer>
+
+  <div class="space-sticky"></div>
+
+  <!-- Barra fija móvil -->
+  <div class="sticky-bar">
+    <div class="p"><s>$299.000</s><b>$160.000</b></div>
+    <a href="#comprar">Comprar ahora</a>
+  </div>
+
+</div>
+
+<script>
+  // ============================================================
+  // 🔶 NÚMERO DE WHATSAPP — cámbialo aquí (formato: 57 + número, sin + ni espacios)
+  var WA_NUMERO = '573224018992';
+  // ============================================================
+
+  // ---- Enlaces de WhatsApp por marca (mensaje pre-escrito) ----
+  document.querySelectorAll('.marca[data-marca]').forEach(function(a){
+    var txt = '¡Hola! 👋 Estoy interesado(a) en la marca ' + a.dataset.marca +
+              '. ¿Me pueden enviar fotos y más información de los modelos disponibles? Gracias 🙏';
+    a.href = 'https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(txt);
+  });
+
+  // ============================================================
+  // 🔶 GALERÍA DE FOTOS POR COLOR — 5 fotos por color
+  //    Sube las fotos a la carpeta img/ con estos nombres exactos.
+  //    La foto -1 es la portada. Las que no existan se omiten solas.
+  // ============================================================
+  var ARCHIVO_COLOR = { 'Negra':'negra', 'Oro':'oro', 'Café':'cafe', 'Avellana':'avellana' };
+  var GALERIA = {};
+  Object.keys(ARCHIVO_COLOR).forEach(function(c){
+    GALERIA[c] = [1,2,3,4,5].map(function(n){ return 'img/campero-' + ARCHIVO_COLOR[c] + '-' + n + '.jpg'; });
+  });
+
+  var colorActual = 'Negra';
+  var galeriaActual = []; // fotos que sí cargaron para el color actual, en orden
+  var galeriaIndice = 0;
+  var heroImg = document.getElementById('hero-img');
+  var fotoPrincipal = document.getElementById('foto-principal');
+
+  // Si la foto no existe, mostramos el recuadro guía en vez de un ícono roto
+  fotoPrincipal.onerror = function(){ heroImg.classList.add('sin-foto'); };
+  fotoPrincipal.onload  = function(){ heroImg.classList.remove('sin-foto'); };
+
+  function setMain(src, color){
+    fotoPrincipal.src = src;
+    fotoPrincipal.alt = 'Bota CAT Campero ' + color;
+    document.querySelectorAll('#thumbs .thumb').forEach(function(t){
+      t.classList.toggle('act', t.dataset.src===src);
+    });
+    var idx = galeriaActual.indexOf(src);
+    if(idx > -1) galeriaIndice = idx;
+  }
+
+  function moverGaleria(direccion){
+    if(galeriaActual.length < 2) return;
+    galeriaIndice = (galeriaIndice + direccion + galeriaActual.length) % galeriaActual.length;
+    setMain(galeriaActual[galeriaIndice], colorActual);
+  }
+
+  function aplicarColor(color){
+    colorActual = color;
+    var lista = GALERIA[color] || [];
+    var cont = document.getElementById('thumbs');
+    cont.innerHTML = '';
+    galeriaActual = [];
+    galeriaIndice = 0;
+    document.getElementById('foto-ph-nombre').textContent = 'Sube ' + lista[0];
+    // la portada (foto -1) siempre es la principal, sin importar qué miniatura cargue primero
+    if(lista[0]) setMain(lista[0], color);
+    var hint = document.getElementById('swipe-hint'); if(hint) hint.style.display = 'none';
+    lista.forEach(function(src){
+      var test = new Image();
+      test.onload = function(){
+        if(colorActual !== color) return; // el usuario ya cambió de color
+        if(galeriaActual.indexOf(src)===-1){
+          galeriaActual.push(src);
+          galeriaActual.sort(function(a,b){ return lista.indexOf(a)-lista.indexOf(b); });
+        }
+        if(hint) hint.style.display = galeriaActual.length>1 ? '' : 'none';
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'thumb'; b.dataset.src = src;
+        if(fotoPrincipal.getAttribute('src')===src) b.classList.add('act');
+        b.innerHTML = '<img src="'+src+'" alt="'+color+'">';
+        b.onclick = function(){ setMain(src, color); };
+        // insertar respetando el orden original de la lista
+        var idx = lista.indexOf(src), siguiente = null;
+        Array.prototype.forEach.call(cont.children, function(ch){
+          var chIdx = lista.indexOf(ch.dataset.src);
+          if(chIdx > idx && (siguiente===null || chIdx < lista.indexOf(siguiente.dataset.src))) siguiente = ch;
+        });
+        if(siguiente) cont.insertBefore(b, siguiente); else cont.appendChild(b);
+      };
+      test.src = src;
+    });
+
+    document.querySelectorAll('.color-op').forEach(function(c){
+      c.classList.toggle('act', c.dataset.color===color);
+    });
+    var nm = document.getElementById('color-name'); if(nm) nm.textContent = color;
+    var res = document.getElementById('res-color'); if(res) res.textContent = color;
+    var sel = document.getElementById('sel-color'); if(sel) sel.value = color;
+  }
+  function setColor(el){ aplicarColor(el.dataset.color); }
+  function syncColor(){ aplicarColor(document.getElementById('sel-color').value); }
+
+  aplicarColor('Negra');
+
+  // ---- Deslizar la foto principal con el dedo (swipe) ----
+  (function(){
+    var x0 = null, y0 = null;
+    heroImg.addEventListener('touchstart', function(e){
+      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+    }, {passive:true});
+    heroImg.addEventListener('touchend', function(e){
+      if(x0===null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      var dy = e.changedTouches[0].clientY - y0;
+      if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) moverGaleria(dx < 0 ? 1 : -1);
+      x0 = null; y0 = null;
+    }, {passive:true});
+  })();
+
+  // ---- Video del producto: la sección aparece solo si existe video/campero.mp4 ----
+  // Bucle automático, sin controles y sin sonido (estilo boomerang).
+  (function(){
+    var v = document.createElement('video');
+    v.addEventListener('loadeddata', function(){
+      v.controls = false; v.loop = true;
+      v.muted = true; v.setAttribute('muted','');
+      v.autoplay = true; v.setAttribute('autoplay','');
+      v.playsInline = true; v.setAttribute('playsinline','');
+      v.setAttribute('disablepictureinpicture','');
+      v.style.pointerEvents = 'none';
+      var box = document.createElement('div'); box.className='video-box'; box.appendChild(v);
+      document.getElementById('video-wrap').appendChild(box);
+      document.getElementById('video-sec').classList.add('on');
+      var p = v.play(); if(p && p.catch) p.catch(function(){});
+    });
+    v.src = 'video/campero.mp4';
+    v.load();
+  })();
+
+  // ---- Contador de oferta: 15 minutos reales por visita ----
+  // La hora de fin se guarda en esta pestaña (sessionStorage): si el cliente recarga
+  // sigue contando los mismos 15 min; en una visita nueva arrancan otros 15.
+  var CD_CLAVE = 'ofertaCamperoFin';
+  var cdFin = (function(){
+    var guardado = null;
+    try{ guardado = sessionStorage.getItem(CD_CLAVE); }catch(e){}
+    if(guardado) return parseInt(guardado, 10);
+    var fin = Date.now() + 15*60*1000;
+    try{ sessionStorage.setItem(CD_CLAVE, fin); }catch(e){}
+    return fin;
+  })();
+  function tick(){
+    var diff = Math.max(0, cdFin - Date.now());
+    document.getElementById('cd-m').textContent = String(Math.floor(diff/6e4)).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(Math.floor(diff%6e4/1000)).padStart(2,'0');
+  }
+  setInterval(tick,1000); tick();
+
+  // ---- Fechas dinámicas del proceso de compra ----
+  (function(){
+    var dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+    var meses=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    function fmt(d){return dias[d.getDay()]+' '+d.getDate()+' '+meses[d.getMonth()];}
+    var hoy=new Date();
+    var man=new Date(hoy); man.setDate(hoy.getDate()+1);
+    var ent=new Date(hoy); ent.setDate(hoy.getDate()+5);
+    document.getElementById('p-hoy').textContent='· '+fmt(hoy);
+    document.getElementById('p-manana').textContent='· '+fmt(man);
+    document.getElementById('p-entrega').textContent='· aprox. '+fmt(ent);
+  })();
+
+  // ---- Carrusel de testimonios (1 a 1, auto + swipe) ----
+  (function(){
+    var track = document.getElementById('testi-track');
+    var slides = track.children.length;
+    var i = 0, timer;
+    function go(n){ i=(n+slides)%slides; track.style.transform='translateX(-'+(i*100)+'%)'; }
+    function reset(){ clearInterval(timer); timer=setInterval(function(){go(i+1);},4000); }
+    reset();
+    var x0=null;
+    track.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+    track.addEventListener('touchend',function(e){
+      if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0;
+      if(Math.abs(dx)>40){ dx<0?go(i+1):go(i-1); reset(); }
+      x0=null;
+    },{passive:true});
+  })();
+
+  // ---- Barra fija al hacer scroll ----
+  window.addEventListener('scroll',function(){
+    document.body.classList.toggle('scrolled', window.scrollY>600);
+  });
+
+  // ---- Al enviar el formulario: arma el mensaje y lo manda a WhatsApp ----
+  function prepararEnvio(e){
+    e.preventDefault();
+    var f = document.getElementById('form-compra');
+    var datos = {
+      nombre: f.nombre.value, color: f.color.value, talla: f.talla.value,
+      celular: f.celular.value, departamento: f.departamento.value,
+      ciudad: f.ciudad.value, direccion: f.direccion.value, notas: f.notas.value
+    };
+    try{ localStorage.setItem('pedidoCampero', JSON.stringify(datos)); }catch(err){}
+
+    // Dispara el evento del píxel (descomenta cuando lo instales)
+    // if(window.fbq) fbq('track','Lead');
+    // if(window.ttq) ttq.track('SubmitForm');
+
+    var msg = '🛒 *NUEVO PEDIDO — Bota CAT Campero*\n\n' +
+      '👤 Nombre: ' + datos.nombre + '\n' +
+      '🥾 Color: ' + datos.color + '\n' +
+      '📏 Talla: ' + datos.talla + '\n' +
+      '📱 Celular: ' + datos.celular + '\n' +
+      '📍 Departamento: ' + datos.departamento + '\n' +
+      '🏙️ Ciudad: ' + datos.ciudad + '\n' +
+      '🏠 Dirección: ' + datos.direccion +
+      (datos.notas ? ('\n📝 Notas: ' + datos.notas) : '') +
+      '\n💰 Total: $160.000 (pago contraentrega)';
+
+    window.open('https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(msg), '_blank');
+    window.location.href = 'gracias.html';
+    return false;
+  }
+</script>
+</body>
+</html>

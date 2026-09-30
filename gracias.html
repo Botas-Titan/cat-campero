@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Gracias por tu pedido! | CAT Campero</title>
+
+<!-- ============================================================= -->
+<!-- 🔶 PÍXEL — dispara aquí la CONVERSIÓN (Purchase / CompletePayment)-->
+<!-- ============================================================= -->
+<!-- META:
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','TU_PIXEL_ID_AQUI'); fbq('track','PageView'); fbq('track','Purchase',{value:160000,currency:'COP'});
+</script>
+=== -->
+<!-- TIKTOK:  ...ttq.load('TU_ID'); ttq.track('CompletePayment',{value:160000,currency:'COP'}); -->
+
+<style>
+  :root{
+    --miel:#ffc510;--miel-osc:#d9a300;--negro:#000000;--marron:#241c13;
+    --crema:#0f1011;--crema2:#1a1b1d;--texto:#f1efe9;--gris:#9c9a94;--verde:#20a15e;
+    --linea:rgba(255,255,255,.10);
+    --sombra:0 10px 30px rgba(0,0,0,.5);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--texto);background:var(--crema);line-height:1.55}
+  .wrap{max-width:520px;margin:0 auto}
+  .sec{padding:28px 20px}
+  .hero-ok{background:linear-gradient(160deg,var(--verde),#157a44);color:#fff;text-align:center;padding:44px 22px}
+  .check{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;font-size:2.6rem;margin:0 auto 18px}
+  .hero-ok h1{font-size:1.7rem;margin-bottom:8px}
+  .hero-ok p{opacity:.95;font-size:1rem}
+  .card{background:var(--crema2);border:1px solid var(--linea);border-radius:16px;padding:22px;box-shadow:var(--sombra);margin-bottom:18px}
+  .card h2{font-size:1.15rem;color:var(--texto);margin-bottom:14px}
+  .paso{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
+  .paso .num{flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:var(--miel);
+    color:#000;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .paso b{display:block;color:var(--miel)}
+  .paso .fecha{font-size:.78rem;color:var(--gris);font-weight:600}
+  .paso p{font-size:.86rem;color:var(--gris)}
+  .wa{display:block;background:#25D366;color:#fff;text-align:center;font-weight:800;
+    padding:16px;border-radius:12px;text-decoration:none;font-size:1.05rem;margin-bottom:18px}
+  .pol h2{font-size:1.2rem;color:var(--texto);margin-bottom:12px}
+  .pol h3{font-size:.95rem;color:var(--miel);margin:16px 0 6px}
+  .pol p,.pol li{font-size:.88rem;color:var(--texto);margin-bottom:6px}
+  .pol ul{padding-left:20px}
+  footer{background:#080808;color:#fff;text-align:center;padding:26px 20px;font-size:.8rem}
+  footer a{color:var(--miel);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero-ok">
+    <div class="check">✓</div>
+    <h1>¡Gracias por tu pedido!</h1>
+    <p>Recibimos tus datos correctamente. En breve te contactamos por WhatsApp para confirmar la entrega.</p>
+  </div>
+
+  <div class="sec">
+
+    <div class="card">
+      <h2>📦 ¿Qué sigue ahora?</h2>
+      <div class="paso"><div class="num">1</div><div><b>Hoy</b> <span class="fecha" id="p-hoy"></span><p>Registramos tu pedido y te escribimos por WhatsApp para confirmarlo.</p></div></div>
+      <div class="paso"><div class="num">2</div><div><b>Mañana</b> <span class="fecha" id="p-manana"></span><p>Empacamos y despachamos tus botas.</p></div></div>
+      <div class="paso"><div class="num">3</div><div><b>En ~5 días</b> <span class="fecha" id="p-entrega"></span><p>Recibes tu pedido en tu dirección y pagas al mensajero.</p></div></div>
+    </div>
+
+    <a class="wa" href="https://wa.me/573224018992?text=Hola,%20acabo%20de%20hacer%20mi%20pedido%20de%20la%20bota%20CAT%20Campero" target="_blank">
+      💬 Confirmar mi pedido por WhatsApp
+    </a>
+
+    <div class="card pol" id="politicas">
+      <h2>🛡️ Políticas de garantía</h2>
+
+      <h3>Garantía extendida (3+ meses)</h3>
+      <p>Todas nuestras botas CAT Campero cuentan con garantía por defectos de fabricación durante mínimo 3 meses a partir de la fecha de entrega.</p>
+
+      <h3>¿Qué cubre?</h3>
+      <ul>
+        <li>Desprendimiento de suela por defecto de fábrica.</li>
+        <li>Descosidos o fallas en el pegado no ocasionados por mal uso.</li>
+        <li>Defectos visibles en el cuero de fábrica.</li>
+      </ul>
+
+      <h3>¿Qué NO cubre?</h3>
+      <ul>
+        <li>Desgaste normal por uso, incluido el desgaste de la suela por trabajo pesado.</li>
+        <li>Daños por químicos, solventes, contacto directo con fuego o metal fundido, o mal uso.</li>
+        <li>Modificaciones hechas por terceros.</li>
+      </ul>
+
+      <h3>Cambios de talla</h3>
+      <p>Tienes hasta 5 días hábiles después de recibir el producto para solicitar cambio de talla, siempre que la bota esté sin uso y en su empaque original.</p>
+
+      <h3>¿Cómo solicitar la garantía?</h3>
+      <p>Escríbenos por WhatsApp con tu número de pedido, una foto/video del inconveniente y tus datos. Nuestro equipo te responde en un máximo de 48 horas hábiles.</p>
+
+      <p style="margin-top:14px;font-size:.8rem;color:var(--gris)">
+        *El envío para gestión de garantía o cambio se coordina directamente con nuestro equipo.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Botas 100% cuero · Envío a toda Colombia</p>
+    <p style="margin-top:8px"><a href="index.html">← Volver a la tienda</a></p>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+    var meses=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+    function fmt(d){return dias[d.getDay()]+' '+d.getDate()+' '+meses[d.getMonth()];}
+    var hoy=new Date(), man=new Date(hoy), ent=new Date(hoy);
+    man.setDate(hoy.getDate()+1); ent.setDate(hoy.getDate()+5);
+    document.getElementById('p-hoy').textContent='· '+fmt(hoy);
+    document.getElementById('p-manana').textContent='· '+fmt(man);
+    document.getElementById('p-entrega').textContent='· aprox. '+fmt(ent);
+  })();
+</script>
+</body>
+</html>
