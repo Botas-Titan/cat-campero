@@ -1023,6 +1023,9 @@ ttq.page();
     appId: "1:730925861936:web:60dbfceec01b03d86671f5"
   };
 
+  // Google Sheets (Apps Script) — copia inmediata de cada pedido
+  const HOJA_URL = "https://script.google.com/macros/s/AKfycbxvbJO80TCfs8CMwwfIMt6JJ-8rc7mfk9cVu7qg9oZ3-Nt2IghPg7z9A99LP5sKN8lNjQ/exec";
+
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -1030,6 +1033,18 @@ ttq.page();
   // Resuelve en <=6s pase lo que pase, para no dejar al cliente esperando
   // si la red falla.
   window.guardarPedido = function(data){
+    // Copia a Google Sheets. sendBeacon sobrevive el cambio de página: el envío
+    // sale aunque el cliente avance de inmediato a gracias.html.
+    try{
+      const paraHoja = JSON.stringify(Object.assign({}, data, { origen: location.href }));
+      const enviado = navigator.sendBeacon &&
+        navigator.sendBeacon(HOJA_URL, new Blob([paraHoja], {type:'text/plain;charset=UTF-8'}));
+      if(!enviado){
+        fetch(HOJA_URL, {method:'POST', mode:'no-cors', keepalive:true, body:paraHoja})
+          .catch(function(){});
+      }
+    }catch(e){ console.error("Pedido NO enviado a la hoja:", e); }
+
     const guardar = addDoc(collection(db, "pedidos"), Object.assign({}, data, {
       estado: "nuevo",
       creado: serverTimestamp(),
