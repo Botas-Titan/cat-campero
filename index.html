@@ -360,15 +360,6 @@ ttq.page();
   .precio-off small{display:block;font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;opacity:.95;margin-top:1px}
   .precio-off{text-align:center;line-height:1.1}
 
-  /* Punta de seguridad */
-  .punta-wrap{margin:8px 0 4px;text-align:left}
-  .punta-wrap[hidden],#punta-field[hidden],#res-punta-line[hidden]{display:none}
-  .punta-ops{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-  .punta-op{background:var(--acero2);color:var(--texto);border:2px solid var(--linea);border-radius:10px;
-    padding:8px 6px;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer;line-height:1.2}
-  .punta-op small{display:block;font-weight:600;color:var(--gris);margin-top:2px;font-size:.72rem}
-  .punta-op.act{border-color:var(--amarillo);background:rgba(255,197,16,.10)}
-  .punta-op.act small{color:var(--amarillo)}
 
   /* Objeción de talla */
   .talla-cambio{display:flex;gap:10px;align-items:flex-start;margin-top:14px;padding:13px 14px;
@@ -457,15 +448,6 @@ ttq.page();
         <div class="color-op" data-color="Oro" onclick="setColor(this)"><div class="swatch sw-oro"></div><span>Oro</span></div>
         <div class="color-op" data-color="Café" onclick="setColor(this)"><div class="swatch sw-cafe"></div><span>Café</span></div>
         <div class="color-op" data-color="Avellana" onclick="setColor(this)"><div class="swatch sw-avellana"></div><span>Avellana</span></div>
-      </div>
-    </div>
-
-    <!-- Punta de seguridad (solo Negra y Oro) -->
-    <div class="punta-wrap" id="punta-wrap">
-      <div class="color-title">Versión: <b>Negra y Oro también con punta de seguridad</b></div>
-      <div class="punta-ops">
-        <button type="button" class="punta-op act" data-punta="0" onclick="setPunta(false)">Sin punta<small>$160.000</small></button>
-        <button type="button" class="punta-op" data-punta="1" onclick="setPunta(true)">🛡️ Con punta de seguridad<small>$179.900</small></button>
       </div>
     </div>
 
@@ -739,7 +721,6 @@ ttq.page();
         <div class="r-line"><span>Color</span><span id="res-color">Negra</span></div>
         <div class="r-line"><span>Descuento</span><span>25% OFF · <em class="mes-oferta">este mes</em></span></div>
         <div class="r-line"><span>Regalo</span><span id="res-regalo">🧦 Par de medias</span></div>
-        <div class="r-line" id="res-punta-line" hidden><span>Versión</span><span>🛡️ Con punta de seguridad</span></div>
         <div class="r-total"><span>Total a pagar</span><span class="px-actual">$160.000</span></div>
       </div>
 
@@ -766,14 +747,6 @@ ttq.page();
             <option>41</option><option>42</option><option>43</option><option>44</option>
           </select>
         </div>
-      </div>
-
-      <div class="field" id="punta-field">
-        <label>Versión de la bota <span class="req">*</span></label>
-        <select name="punta" id="sel-punta" required onchange="syncPunta()">
-          <option value="Sin punta de seguridad">Sin punta de seguridad — $160.000</option>
-          <option value="Con punta de seguridad">Con punta de seguridad — $179.900</option>
-        </select>
       </div>
 
       <div class="field">
@@ -989,32 +962,12 @@ ttq.page();
     var nm = document.getElementById('color-name'); if(nm) nm.textContent = color;
     var res = document.getElementById('res-color'); if(res) res.textContent = color;
     var sel = document.getElementById('sel-color'); if(sel) sel.value = color;
-    actualizarPunta();
   }
 
-  // ---- Punta de seguridad: solo en Negra y Oro (+$19.900) ----
-  var PRECIO_BASE = 160000, PRECIO_PUNTA = 179900;
-  var PRECIO_ANTES_BASE = 213000, PRECIO_ANTES_PUNTA = 239900; // 25% de descuento sobre cada precio
-  var conPunta = false;
+  // ---- Precio (con 25% de descuento este mes) ----
+  var PRECIO = 160000;
   function fmtPrecio(n){ return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
-  function puntaDisponible(){ return colorActual === 'Negra' || colorActual === 'Oro'; }
-  function precioActual(){ return (conPunta && puntaDisponible()) ? PRECIO_PUNTA : PRECIO_BASE; }
-  function precioAntes(){ return (conPunta && puntaDisponible()) ? PRECIO_ANTES_PUNTA : PRECIO_ANTES_BASE; }
-  function actualizarPunta(){
-    var disp = puntaDisponible();
-    if(!disp) conPunta = false;
-    var bloque = document.getElementById('punta-wrap'); if(bloque) bloque.hidden = !disp;
-    var campo = document.getElementById('punta-field'); if(campo) campo.hidden = !disp;
-    var sp = document.getElementById('sel-punta'); if(sp) sp.value = conPunta ? 'Con punta de seguridad' : 'Sin punta de seguridad';
-    document.querySelectorAll('.punta-op').forEach(function(b){ b.classList.toggle('act', (b.dataset.punta==='1') === conPunta); });
-    var rl = document.getElementById('res-punta-line'); if(rl) rl.hidden = !(disp && conPunta);
-    document.querySelectorAll('.px-actual').forEach(function(el){ el.textContent = fmtPrecio(precioActual()); });
-    document.querySelectorAll('.px-antes').forEach(function(el){ el.textContent = fmtPrecio(precioAntes()); });
-    var pn = document.getElementById('precio-new'); if(pn) pn.textContent = fmtPrecio(precioActual());
-    var po = document.getElementById('precio-old'); if(po) po.textContent = 'Antes ' + fmtPrecio(precioAntes());
-  }
-  function setPunta(v){ conPunta = !!v; actualizarPunta(); }
-  function syncPunta(){ setPunta(document.getElementById('sel-punta').value === 'Con punta de seguridad'); }
+  function precioActual(){ return PRECIO; }
   function setColor(el){ aplicarColor(el.dataset.color); }
   function syncColor(){ aplicarColor(document.getElementById('sel-color').value); }
 
@@ -1146,7 +1099,6 @@ ttq.page();
     var f = document.getElementById('form-compra');
     return {
       nombre: f.nombre.value, color: f.color.value, talla: f.talla.value, regalo: f.regalo.value,
-      punta: (puntaDisponible() && conPunta) ? 'Con punta de seguridad' : 'Sin punta de seguridad',
       celular: f.celular.value, departamento: f.departamento.value,
       ciudad: f.ciudad.value, direccion: f.direccion.value, notas: f.notas.value
     };
@@ -1157,7 +1109,6 @@ ttq.page();
       '👤 Nombre: ' + d.nombre + '\n' +
       '🥾 Color: ' + d.color + '\n' +
       '📏 Talla: ' + d.talla + '\n' +
-      (puntaDisponible() ? ('🛡️ Versión: ' + d.punta + '\n') : '') +
       '🎁 Regalo: ' + d.regalo + '\n' +
       '📱 Celular: ' + d.celular + '\n' +
       '📍 Departamento: ' + d.departamento + '\n' +
@@ -1234,8 +1185,7 @@ ttq.page();
         observaciones: (datos.notas ? datos.notas + ' | ' : '') + 'Regalo: ' + datos.regalo,
         regalo: datos.regalo,
         oferta: '25% OFF ' + mesOferta,
-        punta: datos.punta,
-        pedido: [{ color: datos.color, talla: datos.talla, punta: datos.punta, cantidad: 1, precio: precioActual() }],
+        pedido: [{ color: datos.color, talla: datos.talla, cantidad: 1, precio: precioActual() }],
         total: precioActual(),
         pedidoId: datos.id
       }).then(irAGracias, irAGracias);
