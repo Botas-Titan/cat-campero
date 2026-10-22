@@ -98,8 +98,15 @@ ttq.page();
   /* Galería protagonista (deslizable con el dedo) */
   .hero-img{background:transparent;border-radius:0;box-shadow:none;
     overflow:hidden;margin:0 -20px 8px;position:relative;border:0;
-    aspect-ratio:3/4;touch-action:pan-y}
-  .hero-img img{width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none}
+    aspect-ratio:3/4;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+  /* Tira de fotos que se arrastra con el dedo o el mouse */
+  .slides{display:flex;height:100%;transition:transform .35s ease;will-change:transform;cursor:grab}
+  .slides.drag{transition:none;cursor:grabbing}
+  .slides img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;display:block;
+    user-select:none;-webkit-user-drag:none;pointer-events:none}
+  .gal-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;z-index:2;pointer-events:none}
+  .gal-dots i{width:7px;height:7px;border-radius:4px;background:rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(0,0,0,.5);transition:.2s}
+  .gal-dots i.act{width:20px;background:var(--amarillo)}
   .hero-img .zoom-tip{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.6);
     color:#fff;font-size:.68rem;padding:4px 9px;border-radius:20px;pointer-events:none}
   .hero-img .badge-cuero{position:absolute;top:10px;left:10px;background:var(--amarillo);color:#111;
@@ -347,6 +354,54 @@ ttq.page();
   body.scrolled .sticky-bar{display:flex}
   @media(min-width:521px){.sticky-bar{display:none!important}}
   .space-sticky{height:70px}
+
+  /* Nombre del mes de la oferta (se completa solo con JS) */
+  .mes-oferta{font-style:normal}
+  .precio-off small{display:block;font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;opacity:.95;margin-top:1px}
+  .precio-off{text-align:center;line-height:1.1}
+
+  /* Punta de seguridad */
+  .punta-wrap{margin:8px 0 4px;text-align:left}
+  .punta-wrap[hidden],#punta-field[hidden],#res-punta-line[hidden]{display:none}
+  .punta-ops{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .punta-op{background:var(--acero2);color:var(--texto);border:2px solid var(--linea);border-radius:10px;
+    padding:8px 6px;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer;line-height:1.2}
+  .punta-op small{display:block;font-weight:600;color:var(--gris);margin-top:2px;font-size:.72rem}
+  .punta-op.act{border-color:var(--amarillo);background:rgba(255,197,16,.10)}
+  .punta-op.act small{color:var(--amarillo)}
+
+  /* Objeción de talla */
+  .talla-cambio{display:flex;gap:10px;align-items:flex-start;margin-top:14px;padding:13px 14px;
+    background:rgba(32,161,94,.12);border:1.5px solid var(--verde);border-radius:12px;text-align:left}
+  .talla-cambio .tc-ic{font-size:1.2rem;line-height:1.3}
+  .talla-cambio p{font-size:.88rem;color:var(--texto);margin:0}
+  .talla-cambio b{color:#fff}
+
+  /* Temporizador agotado */
+  .bono.expirado .cd-box{opacity:.4}
+  .bono.expirado .cd-label{color:#ffb3a8;opacity:1;font-weight:700}
+
+  /* Recuadro de confirmación antes de WhatsApp */
+  .modal-confirm{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.8);
+    display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
+  .modal-confirm[hidden]{display:none}
+  .mc-card{background:#0b0b0a;border:1px solid var(--linea);border-top:4px solid var(--amarillo);border-radius:18px;padding:22px 18px;
+    width:100%;max-width:420px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+  .mc-check{width:52px;height:52px;margin:0 auto 12px;border-radius:50%;border:3px solid var(--verde);
+    color:var(--verde);font-size:1.6rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .mc-card h3{font-size:1.2rem;color:#fff;margin-bottom:8px}
+  .mc-txt{font-size:.9rem;color:var(--gris);margin-bottom:14px}
+  .mc-precio{background:var(--acero2);border:1px solid var(--linea);border-radius:12px;padding:12px 14px;
+    text-align:left;margin-bottom:16px;font-size:.88rem;color:var(--texto)}
+  .mc-precio b{display:block;font-size:1.05rem;color:#fff;margin-bottom:6px}
+  .mc-precio div{margin-bottom:3px}
+  .mc-precio .mc-ok{color:#3ddc84;font-weight:600}
+  .mc-precio small{display:block;margin-top:6px;font-size:.72rem;color:var(--gris)}
+  .mc-wa{display:block;width:100%;background:#25D366;color:#052e14;font-weight:800;font-size:1.02rem;
+    border:none;border-radius:12px;padding:15px;cursor:pointer;font-family:inherit}
+  .mc-wa:active{transform:scale(.98)}
+  .mc-volver{display:block;width:100%;margin-top:10px;background:transparent;color:var(--gris);
+    border:none;font-size:.85rem;cursor:pointer;padding:8px;font-family:inherit}
 </style>
 </head>
 <body>
@@ -356,11 +411,11 @@ ttq.page();
   <div class="topbar">
     <div class="track">
       <span>🚚 ENVÍO GRATIS + PAGO CONTRAENTREGA en toda Colombia 🇨🇴</span>
-      <span>🎁 REGALO HOY: par de medias GRATIS con tu compra</span>
+      <span>🔥 25% OFF solo en <em class="mes-oferta">este mes</em> + regalo a tu elección</span>
       <span>🛡️ GARANTÍA EXTENDIDA 3+ meses</span>
       <!-- copia idéntica para que el bucle sea continuo -->
       <span>🚚 ENVÍO GRATIS + PAGO CONTRAENTREGA en toda Colombia 🇨🇴</span>
-      <span>🎁 REGALO HOY: par de medias GRATIS con tu compra</span>
+      <span>🔥 25% OFF solo en <em class="mes-oferta">este mes</em> + regalo a tu elección</span>
       <span>🛡️ GARANTÍA EXTENDIDA 3+ meses</span>
     </div>
   </div>
@@ -371,7 +426,8 @@ ttq.page();
     <!-- 📸 GALERÍA PROTAGONISTA — 6 fotos por color (0 a 5) (ver GALERIA en el script de abajo) -->
     <div class="hero-img" id="hero-img">
       <span class="badge-cuero">100% Cuero</span>
-      <img id="foto-principal" alt="Bota CAT Campero Negra">
+      <div class="slides" id="slides"><!-- fotos generadas automáticamente --></div>
+      <div class="gal-dots" id="gal-dots"></div>
       <div class="foto-ph">
         <div class="ic">🥾</div>
         <div>FOTO DEL PRODUCTO</div>
@@ -382,15 +438,15 @@ ttq.page();
 
     <p class="tagline">HECHA PARA EL TRABAJO RUDO</p>
     <h1><span>CAT Campero</span></h1>
-    <div class="stars-inline">★★★★★ <b>4.9</b> · +80.000 clientes felices</div>
+    <div class="stars-inline">★★★★★ <b>4.9</b> · +2.000 ventas este mes</div>
 
     <!-- Precio -->
     <div class="precio-box">
       <div class="precio-left">
-        <span class="precio-new">$160.000</span>
-        <span class="precio-old">Antes $299.000</span>
+        <span class="precio-new" id="precio-new">$160.000</span>
+        <span class="precio-old" id="precio-old">Antes $213.000</span>
       </div>
-      <span class="precio-off">-46%</span>
+      <span class="precio-off">-25%<small>solo <em class="mes-oferta">este mes</em></small></span>
     </div>
 
     <!-- Selector de color -->
@@ -404,8 +460,17 @@ ttq.page();
       </div>
     </div>
 
+    <!-- Punta de seguridad (solo Negra y Oro) -->
+    <div class="punta-wrap" id="punta-wrap">
+      <div class="color-title">Versión: <b>Negra y Oro también con punta de seguridad</b></div>
+      <div class="punta-ops">
+        <button type="button" class="punta-op act" data-punta="0" onclick="setPunta(false)">Sin punta<small>$160.000</small></button>
+        <button type="button" class="punta-op" data-punta="1" onclick="setPunta(true)">🛡️ Con punta de seguridad<small>$179.900</small></button>
+      </div>
+    </div>
+
     <!-- 2. CTA principal -->
-    <a href="#comprar" class="cta">¡Las quiero ya!
+    <a href="#comprar" class="cta">Elegir mi talla
       <small>Paga cuando las recibas en casa</small></a>
     <p class="cta-note">🔒 Compra segura · Sin pagos por adelantado</p>
 
@@ -428,7 +493,7 @@ ttq.page();
     <h2>Beneficios de <em>comprar hoy</em></h2>
     <div class="ben-grid">
       <div class="ben"><div class="ic">🚚</div><b>Envío gratis</b><span>Pago contraentrega en todo el país</span></div>
-      <div class="ben"><div class="ic">🧦</div><b>Regalo de hoy</b><span>Par de medias GRATIS</span></div>
+      <div class="ben"><div class="ic">🎁</div><b>Regalo a tu elección</b><span>Par de medias o cordones extra GRATIS</span></div>
       <div class="ben"><div class="ic">🛡️</div><b>Garantía extendida</b><span>3+ meses de cobertura real</span></div>
       <div class="ben"><div class="ic">↩️</div><b>Cambios fáciles</b><span>Cambio de talla sin costo</span></div>
     </div>
@@ -529,6 +594,10 @@ ttq.page();
       <tr><td>43</td><td>28.0 cm</td><td>43</td></tr>
       <tr><td>44</td><td>28.5 cm</td><td>44</td></tr>
     </table>
+    <div class="talla-cambio">
+      <span class="tc-ic">✅</span>
+      <p><b>¿Y si no me quedan?</b> Tranquilo, hacemos el primer cambio de talla totalmente gratis en tu domicilio.</p>
+    </div>
     <p class="tallas-tip">💡 Si usas medias gruesas de trabajo, pide tu talla normal. ¿Dudas? Escríbenos por WhatsApp.</p>
   </section>
 
@@ -551,8 +620,8 @@ ttq.page();
   <!-- ========== NÚMEROS ========== -->
   <section class="stats">
     <div class="sello-pedidos">
-      <b>+80.000</b>
-      <span>Pedidos<br>entregados</span>
+      <b>+2.000</b>
+      <span>Ventas<br>este mes</span>
     </div>
     <div class="badge-rating">
       <span class="check">✅</span>
@@ -621,10 +690,10 @@ ttq.page();
   <!-- ========== SEGUNDO CTA ========== -->
   <section class="sec" style="text-align:center;background:var(--acero2)">
     <div class="callout-blanco">
-      <h2>Únete a los <em>+80.000 clientes</em></h2>
-      <p>Aprovecha el precio de hoy antes de que suba</p>
+      <h2>Únete a las <em>+2.000 ventas</em> de este mes</h2>
+      <p>Aprovecha el 25% de descuento de <em class="mes-oferta">este mes</em> antes de que termine</p>
     </div>
-    <a href="#comprar" class="cta">Comprar ahora — $160.000
+    <a href="#comprar" class="cta">Comprar ahora — <span class="px-actual">$160.000</span>
       <small>Envío gratis · Paga al recibir</small></a>
   </section>
 
@@ -647,15 +716,15 @@ ttq.page();
 
   <!-- ========== BONO + CONTADOR ========== -->
   <section class="sec bono">
-    <span class="tag">🎁 Bono de hoy</span>
-    <h2>Lleva un <span>par de medias GRATIS</span></h2>
-    <p>Solo para los pedidos que se hagan hoy. La oferta termina en:</p>
-    <div class="countdown">
+    <span class="tag">🔥 Oferta de <em class="mes-oferta">este mes</em></span>
+    <h2><span>25% de descuento</span> solo en <em class="mes-oferta">este mes</em></h2>
+    <p>Elige además tu regalo: par de medias o cordones extra. El envío es gratis si confirmas tu pedido antes de que termine el contador:</p>
+    <div class="countdown" id="countdown">
       <div class="cd-box"><b id="cd-m">15</b><span>Min</span></div>
       <div class="cd-box"><b id="cd-s">00</b><span>Seg</span></div>
     </div>
-    <p class="cd-label">⏳ El regalo se retira automáticamente cuando el contador llegue a cero</p>
-    <a href="#comprar" class="cta">Reclamar mi regalo</a>
+    <p class="cd-label" id="cd-label">⏳ Pasado este tiempo se pierde el envío gratis</p>
+    <a href="#comprar" class="cta">Aprovechar el descuento</a>
   </section>
 
   <!-- ========== FORMULARIO ========== -->
@@ -668,8 +737,10 @@ ttq.page();
       <div class="resumen">
         <div class="r-line"><span>Producto</span><span><b>Bota CAT Campero</b></span></div>
         <div class="r-line"><span>Color</span><span id="res-color">Negra</span></div>
-        <div class="r-line"><span>Regalo</span><span>🧦 Par de medias</span></div>
-        <div class="r-total"><span>Total a pagar</span><span>$160.000</span></div>
+        <div class="r-line"><span>Descuento</span><span>25% OFF · <em class="mes-oferta">este mes</em></span></div>
+        <div class="r-line"><span>Regalo</span><span id="res-regalo">🧦 Par de medias</span></div>
+        <div class="r-line" id="res-punta-line" hidden><span>Versión</span><span>🛡️ Con punta de seguridad</span></div>
+        <div class="r-total"><span>Total a pagar</span><span class="px-actual">$160.000</span></div>
       </div>
 
       <div class="field">
@@ -695,6 +766,22 @@ ttq.page();
             <option>41</option><option>42</option><option>43</option><option>44</option>
           </select>
         </div>
+      </div>
+
+      <div class="field" id="punta-field">
+        <label>Versión de la bota <span class="req">*</span></label>
+        <select name="punta" id="sel-punta" required onchange="syncPunta()">
+          <option value="Sin punta de seguridad">Sin punta de seguridad — $160.000</option>
+          <option value="Con punta de seguridad">Con punta de seguridad — $179.900</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Regalo que prefieres <span class="req">*</span></label>
+        <select name="regalo" id="sel-regalo" required onchange="syncRegalo()">
+          <option value="Par de medias">Par de medias 🧦</option>
+          <option value="Cordones extra">Cordones extra 👟</option>
+        </select>
       </div>
 
       <div class="field">
@@ -762,8 +849,25 @@ ttq.page();
 
   <!-- Barra fija móvil -->
   <div class="sticky-bar">
-    <div class="p"><s>$299.000</s><b>$160.000</b></div>
-    <a href="#comprar">Comprar ahora</a>
+    <div class="p"><s class="px-antes">$213.000</s><b class="px-actual">$160.000</b></div>
+    <a href="#comprar" id="btn-sticky" onclick="return comprarAhora(event)">Comprar ahora</a>
+  </div>
+
+  <!-- Recuadro de confirmación: aparece antes de enviar al cliente a WhatsApp -->
+  <div class="modal-confirm" id="modal-confirm" hidden role="dialog" aria-modal="true" aria-labelledby="mc-titulo">
+    <div class="mc-card">
+      <div class="mc-check">✓</div>
+      <h3 id="mc-titulo">¡Estás a un paso de completar tu pedido!</h3>
+      <p class="mc-txt">Tus datos están preparados. Envíanos el mensaje por WhatsApp para que nuestro equipo pueda recibir tu solicitud y confirmar los detalles.</p>
+      <div class="mc-precio">
+        <b>Precio final: <span class="px-actual">$160.000</span> COP</b>
+        <div class="mc-ok" id="mc-envio">✓ Envío incluido a toda Colombia</div>
+        <div>✓ Pagas cuando recibes tu pedido.</div>
+        <small id="mc-nota">Sin costo adicional de envío. Aplican las condiciones de cobertura y entrega que correspondan.</small>
+      </div>
+      <button type="button" class="mc-wa" id="mc-enviar" onclick="enviarPorWhatsApp()">💬 Enviar pedido por WhatsApp</button>
+      <button type="button" class="mc-volver" onclick="cerrarConfirmacion()">← Corregir mis datos</button>
+    </div>
   </div>
 
 </div>
@@ -795,27 +899,46 @@ ttq.page();
   var colorActual = 'Negra';
   var galeriaActual = []; // fotos que sí cargaron para el color actual, en orden
   var galeriaIndice = 0;
+  var galeriaTocada = false; // si el cliente ya movió la galería (para no saltarle la foto al cargar otras)
   var heroImg = document.getElementById('hero-img');
-  var fotoPrincipal = document.getElementById('foto-principal');
+  var slides = document.getElementById('slides');
+  var dots = document.getElementById('gal-dots');
 
-  // Si la foto no existe, mostramos el recuadro guía en vez de un ícono roto
-  fotoPrincipal.onerror = function(){ heroImg.classList.add('sin-foto'); };
-  fotoPrincipal.onload  = function(){ heroImg.classList.remove('sin-foto'); };
-
-  function setMain(src, color){
-    fotoPrincipal.src = src;
-    fotoPrincipal.alt = 'Bota CAT Campero ' + color;
+  // Mueve la tira de fotos a la foto "galeriaIndice" (+ desplazamiento en px mientras se arrastra)
+  function pintarGaleria(dx){
+    slides.style.transform = 'translateX(calc(' + (-galeriaIndice*100) + '% + ' + (dx||0) + 'px))';
+    Array.prototype.forEach.call(dots.children, function(d, i){ d.classList.toggle('act', i===galeriaIndice); });
+    var src = galeriaActual[galeriaIndice];
     document.querySelectorAll('#thumbs .thumb').forEach(function(t){
       t.classList.toggle('act', t.dataset.src===src);
     });
+  }
+
+  // Reconstruye las fotos del carrusel con las que ya cargaron, en el orden de la lista
+  function armarSlides(color){
+    var actual = galeriaActual[galeriaIndice];
+    slides.innerHTML = galeriaActual.map(function(src){
+      return '<img src="'+src+'" alt="Bota CAT Campero '+color+'" draggable="false">';
+    }).join('');
+    dots.innerHTML = galeriaActual.length > 1 ? galeriaActual.map(function(){ return '<i></i>'; }).join('') : '';
+    galeriaIndice = galeriaTocada ? Math.max(0, galeriaActual.indexOf(actual)) : 0;
+    heroImg.classList.toggle('sin-foto', galeriaActual.length===0);
+    slides.classList.add('drag'); pintarGaleria(0);
+    slides.offsetWidth; slides.classList.remove('drag'); // evita animar el salto al reconstruir
+  }
+
+  function setMain(src){
     var idx = galeriaActual.indexOf(src);
-    if(idx > -1) galeriaIndice = idx;
+    if(idx < 0) return;
+    galeriaIndice = idx; galeriaTocada = true;
+    pintarGaleria(0);
   }
 
   function moverGaleria(direccion){
     if(galeriaActual.length < 2) return;
-    galeriaIndice = (galeriaIndice + direccion + galeriaActual.length) % galeriaActual.length;
-    setMain(galeriaActual[galeriaIndice], colorActual);
+    galeriaIndice = Math.min(galeriaActual.length-1, Math.max(0, galeriaIndice + direccion));
+    galeriaTocada = true;
+    pintarGaleria(0);
   }
 
   function aplicarColor(color){
@@ -825,24 +948,30 @@ ttq.page();
     cont.innerHTML = '';
     galeriaActual = [];
     galeriaIndice = 0;
+    galeriaTocada = false;
+    armarSlides(color);
+    heroImg.classList.remove('sin-foto'); // mientras cargan, sin recuadro guía
+    var pendientes = lista.length;
+    function unaMenos(){ if(--pendientes===0 && colorActual===color && !galeriaActual.length) heroImg.classList.add('sin-foto'); }
     document.getElementById('foto-ph-nombre').textContent = 'Sube ' + lista[0];
-    // la portada (foto -0) siempre es la principal, sin importar qué miniatura cargue primero
-    if(lista[0]) setMain(lista[0], color);
     var hint = document.getElementById('swipe-hint'); if(hint) hint.style.display = 'none';
     lista.forEach(function(src){
       var test = new Image();
+      test.onerror = unaMenos;
       test.onload = function(){
+        unaMenos();
         if(colorActual !== color) return; // el usuario ya cambió de color
         if(galeriaActual.indexOf(src)===-1){
           galeriaActual.push(src);
           galeriaActual.sort(function(a,b){ return lista.indexOf(a)-lista.indexOf(b); });
         }
+        armarSlides(color);
         if(hint) hint.style.display = galeriaActual.length>1 ? '' : 'none';
         var b = document.createElement('button');
         b.type = 'button'; b.className = 'thumb'; b.dataset.src = src;
-        if(fotoPrincipal.getAttribute('src')===src) b.classList.add('act');
+        if(galeriaActual[galeriaIndice]===src) b.classList.add('act');
         b.innerHTML = '<img src="'+src+'" alt="'+color+'">';
-        b.onclick = function(){ setMain(src, color); };
+        b.onclick = function(){ setMain(src); };
         // insertar respetando el orden original de la lista
         var idx = lista.indexOf(src), siguiente = null;
         Array.prototype.forEach.call(cont.children, function(ch){
@@ -860,25 +989,65 @@ ttq.page();
     var nm = document.getElementById('color-name'); if(nm) nm.textContent = color;
     var res = document.getElementById('res-color'); if(res) res.textContent = color;
     var sel = document.getElementById('sel-color'); if(sel) sel.value = color;
+    actualizarPunta();
   }
+
+  // ---- Punta de seguridad: solo en Negra y Oro (+$19.900) ----
+  var PRECIO_BASE = 160000, PRECIO_PUNTA = 179900;
+  var PRECIO_ANTES_BASE = 213000, PRECIO_ANTES_PUNTA = 239900; // 25% de descuento sobre cada precio
+  var conPunta = false;
+  function fmtPrecio(n){ return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function puntaDisponible(){ return colorActual === 'Negra' || colorActual === 'Oro'; }
+  function precioActual(){ return (conPunta && puntaDisponible()) ? PRECIO_PUNTA : PRECIO_BASE; }
+  function precioAntes(){ return (conPunta && puntaDisponible()) ? PRECIO_ANTES_PUNTA : PRECIO_ANTES_BASE; }
+  function actualizarPunta(){
+    var disp = puntaDisponible();
+    if(!disp) conPunta = false;
+    var bloque = document.getElementById('punta-wrap'); if(bloque) bloque.hidden = !disp;
+    var campo = document.getElementById('punta-field'); if(campo) campo.hidden = !disp;
+    var sp = document.getElementById('sel-punta'); if(sp) sp.value = conPunta ? 'Con punta de seguridad' : 'Sin punta de seguridad';
+    document.querySelectorAll('.punta-op').forEach(function(b){ b.classList.toggle('act', (b.dataset.punta==='1') === conPunta); });
+    var rl = document.getElementById('res-punta-line'); if(rl) rl.hidden = !(disp && conPunta);
+    document.querySelectorAll('.px-actual').forEach(function(el){ el.textContent = fmtPrecio(precioActual()); });
+    document.querySelectorAll('.px-antes').forEach(function(el){ el.textContent = fmtPrecio(precioAntes()); });
+    var pn = document.getElementById('precio-new'); if(pn) pn.textContent = fmtPrecio(precioActual());
+    var po = document.getElementById('precio-old'); if(po) po.textContent = 'Antes ' + fmtPrecio(precioAntes());
+  }
+  function setPunta(v){ conPunta = !!v; actualizarPunta(); }
+  function syncPunta(){ setPunta(document.getElementById('sel-punta').value === 'Con punta de seguridad'); }
   function setColor(el){ aplicarColor(el.dataset.color); }
   function syncColor(){ aplicarColor(document.getElementById('sel-color').value); }
 
   aplicarColor('Negra');
 
-  // ---- Deslizar la foto principal con el dedo (swipe) ----
+  // ---- Deslizar las fotos: la foto sigue al dedo (o al mouse) y se acomoda al soltar ----
   (function(){
-    var x0 = null, y0 = null;
-    heroImg.addEventListener('touchstart', function(e){
-      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
-    }, {passive:true});
-    heroImg.addEventListener('touchend', function(e){
-      if(x0===null) return;
-      var dx = e.changedTouches[0].clientX - x0;
-      var dy = e.changedTouches[0].clientY - y0;
-      if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) moverGaleria(dx < 0 ? 1 : -1);
-      x0 = null; y0 = null;
-    }, {passive:true});
+    var x0 = null, t0 = 0, dx = 0, id = null;
+    heroImg.addEventListener('pointerdown', function(e){
+      if(galeriaActual.length < 2 || (e.pointerType==='mouse' && e.button!==0)) return;
+      x0 = e.clientX; t0 = Date.now(); dx = 0; id = e.pointerId;
+      slides.classList.add('drag');
+      if(e.pointerType==='mouse') e.preventDefault();
+    });
+    heroImg.addEventListener('pointermove', function(e){
+      if(x0===null || e.pointerId!==id) return;
+      dx = e.clientX - x0;
+      if(Math.abs(dx) > 6 && heroImg.setPointerCapture) try{ heroImg.setPointerCapture(id); }catch(err){}
+      var enBorde = (galeriaIndice===0 && dx>0) || (galeriaIndice===galeriaActual.length-1 && dx<0);
+      pintarGaleria(enBorde ? dx/3 : dx); // resistencia en la primera y la última foto
+    });
+    function soltar(e){
+      if(x0===null || e.pointerId!==id) return;
+      slides.classList.remove('drag');
+      var ancho = heroImg.offsetWidth, rapido = Math.abs(dx)/Math.max(1, Date.now()-t0) > 0.4;
+      if(Math.abs(dx) > ancho*0.18 || (rapido && Math.abs(dx) > 20)){
+        moverGaleria(dx < 0 ? 1 : -1);
+        var hint = document.getElementById('swipe-hint'); if(hint) hint.style.display = 'none';
+      } else pintarGaleria(0);
+      x0 = null; id = null;
+    }
+    heroImg.addEventListener('pointerup', soltar);
+    heroImg.addEventListener('pointercancel', soltar); // el navegador tomó el gesto (scroll vertical)
   })();
 
   // ---- Video del producto: la sección aparece solo si existe video/campero.mp4 ----
@@ -901,22 +1070,39 @@ ttq.page();
     v.load();
   })();
 
-  // ---- Contador de oferta: 15 minutos reales por visita ----
-  // La hora de fin se guarda en esta pestaña (sessionStorage): si el cliente recarga
-  // sigue contando los mismos 15 min; en una visita nueva arrancan otros 15.
-  var CD_CLAVE = 'ofertaCamperoFin';
+  // ---- Oferta del mes: el nombre del mes se actualiza solo cada mes ----
+  var MESES_LARGO = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var hoyOferta = new Date();
+  var mesOferta = MESES_LARGO[hoyOferta.getMonth()];
+  document.querySelectorAll('.mes-oferta').forEach(function(el){ el.textContent = mesOferta; });
+
+  // ---- Contador de oferta: 15 minutos que NO se reinician ----
+  // La hora de fin se guarda en el navegador (localStorage): si el cliente recarga,
+  // cierra y vuelve a entrar, el contador sigue donde iba y, al llegar a cero,
+  // se queda en cero. Se renueva únicamente cuando cambia el mes de la oferta.
+  var CD_CLAVE = 'ofertaCamperoFin-' + hoyOferta.getFullYear() + '-' + (hoyOferta.getMonth()+1);
   var cdFin = (function(){
     var guardado = null;
-    try{ guardado = sessionStorage.getItem(CD_CLAVE); }catch(e){}
-    if(guardado) return parseInt(guardado, 10);
+    try{ guardado = localStorage.getItem(CD_CLAVE); }catch(e){}
+    if(guardado && !isNaN(parseInt(guardado, 10))) return parseInt(guardado, 10);
     var fin = Date.now() + 15*60*1000;
-    try{ sessionStorage.setItem(CD_CLAVE, fin); }catch(e){}
+    try{ localStorage.setItem(CD_CLAVE, fin); }catch(e){}
     return fin;
   })();
+  var cdExpirado = false;
+  function marcarExpirado(){
+    cdExpirado = true;
+    var sec = document.querySelector('.bono'); if(sec) sec.classList.add('expirado');
+    var lb = document.getElementById('cd-label');
+    if(lb) lb.textContent = '⛔ Se acabó el tiempo: ya perdiste el envío gratis. Aún puedes aprovechar el 25% de descuento de ' + mesOferta + '.';
+  }
   function tick(){
     var diff = Math.max(0, cdFin - Date.now());
-    document.getElementById('cd-m').textContent = String(Math.floor(diff/6e4)).padStart(2,'0');
-    document.getElementById('cd-s').textContent = String(Math.floor(diff%6e4/1000)).padStart(2,'0');
+    var m = Math.floor(diff/6e4);
+    var s = Math.floor(diff%6e4/1000);
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+    if(diff === 0 && !cdExpirado) marcarExpirado();
   }
   setInterval(tick,1000); tick();
 
@@ -956,36 +1142,83 @@ ttq.page();
     document.body.classList.toggle('scrolled', window.scrollY>600);
   });
 
-  // ---- Al enviar el formulario: arma el mensaje y lo manda a WhatsApp ----
-  function prepararEnvio(e){
-    e.preventDefault();
+  function recolectarDatos(){
     var f = document.getElementById('form-compra');
-    var datos = {
-      nombre: f.nombre.value, color: f.color.value, talla: f.talla.value,
+    return {
+      nombre: f.nombre.value, color: f.color.value, talla: f.talla.value, regalo: f.regalo.value,
+      punta: (puntaDisponible() && conPunta) ? 'Con punta de seguridad' : 'Sin punta de seguridad',
       celular: f.celular.value, departamento: f.departamento.value,
       ciudad: f.ciudad.value, direccion: f.direccion.value, notas: f.notas.value
     };
+  }
+
+  function mensajeWhatsApp(d){
+    return '🛒 *NUEVO PEDIDO — Bota CAT Campero*\n\n' +
+      '👤 Nombre: ' + d.nombre + '\n' +
+      '🥾 Color: ' + d.color + '\n' +
+      '📏 Talla: ' + d.talla + '\n' +
+      (puntaDisponible() ? ('🛡️ Versión: ' + d.punta + '\n') : '') +
+      '🎁 Regalo: ' + d.regalo + '\n' +
+      '📱 Celular: ' + d.celular + '\n' +
+      '📍 Departamento: ' + d.departamento + '\n' +
+      '🏙️ Ciudad: ' + d.ciudad + '\n' +
+      '🏠 Dirección: ' + d.direccion +
+      (d.notas ? ('\n📝 Notas: ' + d.notas) : '') +
+      '\n🔥 Oferta: 25% OFF de ' + mesOferta +
+      '\n💰 Total: ' + fmtPrecio(precioActual()) + ' (pago contraentrega)';
+  }
+
+  // Muestra el recuadro "¡Estás a un paso de completar tu pedido!".
+  // Solo lo muestra: el pedido NO se guarda ni se cuenta hasta confirmar ahí.
+  function abrirConfirmacion(){
+    // Si el envío gratis ya se perdió (contador en cero), no se promete en el recuadro
+    var envio = document.getElementById('mc-envio'), nota = document.getElementById('mc-nota');
+    if(cdExpirado){
+      envio.textContent = 'El costo de envío lo confirmamos por WhatsApp.';
+      envio.classList.remove('mc-ok');
+      nota.textContent = 'Aplican las condiciones de cobertura y entrega que correspondan.';
+    }
+
+    var m = document.getElementById('modal-confirm');
+    m.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('mc-enviar').focus();
+  }
+
+  function cerrarConfirmacion(){
+    document.getElementById('modal-confirm').hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  // Botón del recuadro = confirmación real del pedido (lo que antes hacía el formulario)
+  var enviandoPedido = false;
+  function enviarPorWhatsApp(){
+    if(enviandoPedido) return; // evita doble clic = pedido duplicado
+    enviandoPedido = true;
+    var btn = document.getElementById('mc-enviar');
+    btn.textContent = 'Enviando tu pedido…';
+
+    var datos = recolectarDatos();
+    var msg = mensajeWhatsApp(datos);
+
+    // Identificador único + hora del pedido. gracias.html los usa para contar
+    // la compra UNA sola vez y solo cuando el pedido es real y reciente.
+    datos.id  = 'CC-' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
+    datos.ts  = Date.now();
+    datos.msg = msg;
     try{ localStorage.setItem('pedidoCampero', JSON.stringify(datos)); }catch(err){}
 
-    // Dispara el evento del píxel (descomenta cuando lo instales)
-    // if(window.fbq) fbq('track','Lead');
+    // Evento Lead (formulario enviado)
+    if(window.fbq) fbq('track','Lead',
+      {content_name:'Bota CAT Campero', content_type:'product', value:precioActual(), currency:'COP'},
+      {eventID: datos.id + '-lead'});
     // if(window.ttq) ttq.track('SubmitForm');
 
-    var msg = '🛒 *NUEVO PEDIDO — Bota CAT Campero*\n\n' +
-      '👤 Nombre: ' + datos.nombre + '\n' +
-      '🥾 Color: ' + datos.color + '\n' +
-      '📏 Talla: ' + datos.talla + '\n' +
-      '📱 Celular: ' + datos.celular + '\n' +
-      '📍 Departamento: ' + datos.departamento + '\n' +
-      '🏙️ Ciudad: ' + datos.ciudad + '\n' +
-      '🏠 Dirección: ' + datos.direccion +
-      (datos.notas ? ('\n📝 Notas: ' + datos.notas) : '') +
-      '\n💰 Total: $160.000 (pago contraentrega)';
-
-    // Abre WhatsApp en una pestaña nueva con el pedido ya redactado.
+    // Abre WhatsApp en una pestaña nueva con el pedido ya redactado, hacia tu número.
+    // Si el navegador bloquea la ventana, gracias.html deja el botón listo con el pedido.
     try{ window.open('https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(msg), '_blank'); }catch(err){}
 
-    // Guarda el pedido en Firestore (misma colección "pedidos" que las otras landings).
+    // Guarda el pedido en Firestore (misma colección "pedidos" que Timberland).
     // IMPORTANTE: solo navegamos a gracias.html DESPUÉS de que termine el guardado,
     // porque si cambiamos de página antes, el navegador corta el envío y el pedido se pierde.
     var irAGracias = function(){ window.location.href = 'gracias.html'; };
@@ -998,14 +1231,55 @@ ttq.page();
         departamento: datos.departamento,
         ciudad: datos.ciudad,
         direccion: datos.direccion,
-        observaciones: datos.notas,
-        pedido: [{ color: datos.color, talla: datos.talla, cantidad: 1, precio: 160000 }],
-        total: 160000
+        observaciones: (datos.notas ? datos.notas + ' | ' : '') + 'Regalo: ' + datos.regalo,
+        regalo: datos.regalo,
+        oferta: '25% OFF ' + mesOferta,
+        punta: datos.punta,
+        pedido: [{ color: datos.color, talla: datos.talla, punta: datos.punta, cantidad: 1, precio: precioActual() }],
+        total: precioActual(),
+        pedidoId: datos.id
       }).then(irAGracias, irAGracias);
     } else {
       irAGracias();
     }
+  }
+
+  // Si el cliente vuelve atrás desde WhatsApp/gracias, el recuadro queda listo de nuevo
+  window.addEventListener('pageshow', function(){
+    enviandoPedido = false;
+    var btn = document.getElementById('mc-enviar');
+    if(btn) btn.textContent = '💬 Enviar pedido por WhatsApp';
+    cerrarConfirmacion();
+  });
+
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') cerrarConfirmacion(); });
+
+  // Botón "Confirmar mi pedido" del formulario: abre el recuadro de confirmación
+  function prepararEnvio(e){
+    e.preventDefault(); // evitamos que el navegador abra gracias.html?datos...
+    abrirConfirmacion();
     return false;
+  }
+
+  // Botón fijo "Comprar ahora": si los datos ya están completos confirma la compra;
+  // si faltan, lleva al formulario (y señala lo que falta si ya empezó a llenarlo)
+  function comprarAhora(e){
+    var f = document.getElementById('form-compra');
+    if(f.checkValidity()){
+      e.preventDefault();
+      abrirConfirmacion();
+      return false;
+    }
+    var empezo = !!(f.nombre.value || f.celular.value || f.departamento.value || f.ciudad.value || f.direccion.value);
+    if(empezo) setTimeout(function(){ f.reportValidity(); }, 450);
+    return true; // deja que el enlace #comprar haga scroll al formulario
+  }
+
+  // ---- Regalo elegido: actualiza el resumen del pedido ----
+  function syncRegalo(){
+    var v = document.getElementById('sel-regalo').value;
+    var icono = v === 'Cordones extra' ? '👟 ' : '🧦 ';
+    document.getElementById('res-regalo').textContent = icono + v;
   }
 </script>
 
