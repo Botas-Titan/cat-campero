@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-CO">
+<html lang="es-CO" data-mp="cat-campero" data-wa="573224146909">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -786,6 +786,7 @@ ttq.page();
       <button type="submit" class="cta">Confirmar mi pedido
         <small>Pago contraentrega · Envío gratis</small></button>
       <p class="cta-note">Al confirmar, te contactamos por WhatsApp para agendar la entrega.</p>
+      <div style="text-align:center;margin-top:14px"><div style="display:inline-block;background:#fff;border-radius:14px;padding:10px 14px;max-width:100%"><img src="img/mercadopago-medios.png" alt="Pagos con Mercado Pago: Visa, Mastercard, American Express, Diners Club, PSE y Efecty" width="320" height="98" loading="lazy" style="display:block;max-width:100%;height:auto"></div><p class="cta-note" style="margin-top:6px">Pago seguro con Mercado Pago</p></div>
     </form>
   </section>
 
@@ -838,6 +839,8 @@ ttq.page();
         <div>✓ Pagas cuando recibes tu pedido.</div>
         <small id="mc-nota">Sin costo adicional de envío. Aplican las condiciones de cobertura y entrega que correspondan.</small>
       </div>
+      <button type="button" class="mc-mp" id="mc-mp" hidden onclick="pagarConMercadoPago()">💳 Pagar ahora con Mercado Pago</button>
+      <p class="mc-o" id="mc-o" hidden>o si prefieres, pagas al recibir:</p>
       <button type="button" class="mc-wa" id="mc-enviar" onclick="enviarPorWhatsApp()">💬 Enviar pedido por WhatsApp</button>
       <button type="button" class="mc-volver" onclick="cerrarConfirmacion()">← Corregir mis datos</button>
     </div>
@@ -1281,5 +1284,6 @@ ttq.page();
   };
 </script>
 
+<script src="mp.js"></script>
 </body>
 </html>
