@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es-CO" data-mp="cat-campero" data-wa="573224146909">
+<html lang="es-CO" data-mp="cat-campero" data-wa="573159928000">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Bota CAT Campero | 100% Cuero · Trabajo Pesado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,17 +14,20 @@
 <!--    (mira el archivo LEEME.md, sección "Instalar píxel")        -->
 <!-- ============================================================= -->
 
-<!-- === META PIXEL (Facebook / Instagram) ===
+<!-- === META PIXEL (Facebook / Instagram) — píxel CAT Campero === -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'TU_PIXEL_ID_AQUI');
+fbq('init', '1664973935026649');
 fbq('track', 'PageView');
+fbq('track', 'ViewContent', {content_name:'Bota CAT Campero', content_type:'product', value:160000, currency:'COP'});
 </script>
-=== FIN META PIXEL === -->
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1664973935026649&ev=PageView&noscript=1"/></noscript>
+<script src="capi.js"></script>
+<!-- === FIN META PIXEL === -->
 
 <!-- === TIKTOK PIXEL ===
 <script>
@@ -341,6 +344,16 @@ ttq.page();
   footer{background:#080808;color:#fff;text-align:center;padding:30px 20px;font-size:.8rem}
   footer a{color:var(--amarillo);text-decoration:none}
   footer .legal{opacity:.5;font-size:.72rem;margin-top:14px;line-height:1.5}
+
+  /* ===== Ajustes iPhone / Safari ===== */
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .field input,.field select,.field textarea{-webkit-appearance:none;appearance:none;border-radius:10px;min-height:48px}
+  .field select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23999' stroke-width='2'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+  .field textarea{min-height:0}
+  button,a.btn,.sticky-bar a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .sticky-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom));-webkit-transform:translateZ(0);transform:translateZ(0)}
+  .space-sticky{height:calc(70px + env(safe-area-inset-bottom))}
+  .modal-confirm{-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
 
   /* Barra fija móvil */
   .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:99;background:#111;
@@ -812,7 +825,7 @@ ttq.page();
   <!-- ========== FOOTER ========== -->
   <footer>
     <p>Botas 100% cuero · Envío a toda Colombia</p>
-    <p style="margin-top:10px">📲 ¿Dudas? <a href="https://wa.me/573224146909" target="_blank">Escríbenos por WhatsApp</a></p>
+    <p style="margin-top:10px">📲 ¿Dudas? <a href="https://wa.me/573159928000" target="_blank">Escríbenos por WhatsApp</a></p>
     <p class="legal">
       Envío gratis a todo Colombia · Pago contraentrega · Garantía extendida 3+ meses.<br>
       © 2026 Todos los derechos reservados. Ver <a href="gracias.html#politicas">políticas de garantía</a>.
@@ -851,7 +864,7 @@ ttq.page();
 <script>
   // ============================================================
   // 🔶 NÚMERO DE WHATSAPP — cámbialo aquí (formato: 57 + número, sin + ni espacios)
-  var WA_NUMERO = '573224146909';
+  var WA_NUMERO = '573159928000';
   // ============================================================
 
   // ---- Enlaces de WhatsApp por marca (mensaje pre-escrito) ----
@@ -1166,6 +1179,9 @@ ttq.page();
     if(window.fbq) fbq('track','Lead',
       {content_name:'Bota CAT Campero', content_type:'product', value:precioActual(), currency:'COP'},
       {eventID: datos.id + '-lead'});
+    if(window.capiEnviar) capiEnviar('Lead', datos.id + '-lead',
+      {content_name:'Bota CAT Campero', content_type:'product', value:precioActual(), currency:'COP'},
+      {nombre:datos.nombre, celular:datos.celular, ciudad:datos.ciudad, departamento:datos.departamento});
     // if(window.ttq) ttq.track('SubmitForm');
 
     // Abre WhatsApp en una pestaña nueva con el pedido ya redactado, hacia tu número.

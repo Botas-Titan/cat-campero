@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html lang="es-CO" data-mp="cat-campero" data-wa="573224146909">
+<html lang="es-CO" data-mp="cat-campero" data-wa="573159928000">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>¡Gracias por tu pedido! | CAT Campero</title>
 
 <!-- ============================================================= -->
 <!-- 🔶 PÍXEL — dispara aquí la CONVERSIÓN (Purchase / CompletePayment)-->
 <!-- ============================================================= -->
-<!-- META:
+<!-- META (píxel CAT Campero): -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','TU_PIXEL_ID_AQUI'); fbq('track','PageView'); fbq('track','Purchase',{value:160000,currency:'COP'});
+fbq('init','1664973935026649');
+fbq('track','PageView');
 </script>
-=== -->
+<script src="capi.js"></script>
+<script>
+// ===== COMPRA (Purchase) =====
+// Solo se cuenta si: (a) la persona llenó el formulario, (b) el pedido es de
+// hace menos de 1 hora y (c) ese pedido no se ha contado antes.
+(function(){
+  try{
+    if(location.search.indexOf('ver=politicas') > -1) return;
+    if(location.search.indexOf('ref=') > -1) return;   // pago con Mercado Pago: se cuenta al verificarlo (mp.js)
+    var crudo = localStorage.getItem('pedidoCampero');
+    if(!crudo) return;
+    var pedido = JSON.parse(crudo);
+    if(!pedido || !pedido.id || !pedido.ts) return;
+    if(Date.now() - pedido.ts > 3600000) return;
+    var contados = (localStorage.getItem('pedidosContados') || '').split(',');
+    if(contados.indexOf(pedido.id) > -1) return;
+    contados.push(pedido.id);
+    localStorage.setItem('pedidosContados', contados.slice(-50).join(','));
+    var custom = {content_name:'Bota CAT Campero', content_type:'product', contents:[{id:'cat-campero', quantity:1}],
+                  num_items:1, value:160000, currency:'COP'};
+    fbq('track','Purchase', custom, {eventID: pedido.id});
+    if(window.capiEnviar) capiEnviar('Purchase', pedido.id, custom,
+      {nombre:pedido.nombre, celular:pedido.celular, ciudad:pedido.ciudad, departamento:pedido.departamento});
+  }catch(e){}
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1664973935026649&ev=PageView&noscript=1"/></noscript>
 <!-- TIKTOK:  ...ttq.load('TU_ID'); ttq.track('CompletePayment',{value:160000,currency:'COP'}); -->
 
 <style>
@@ -69,7 +96,7 @@ fbq('init','TU_PIXEL_ID_AQUI'); fbq('track','PageView'); fbq('track','Purchase',
       <div class="paso"><div class="num">3</div><div><b>En ~5 días</b> <span class="fecha" id="p-entrega"></span><p>Recibes tu pedido en tu dirección y pagas al mensajero.</p></div></div>
     </div>
 
-    <a class="wa" id="wa-confirmar" href="https://wa.me/573224146909?text=Hola,%20acabo%20de%20hacer%20mi%20pedido%20de%20la%20bota%20CAT%20Campero" target="_blank">
+    <a class="wa" id="wa-confirmar" href="https://wa.me/573159928000?text=Hola,%20acabo%20de%20hacer%20mi%20pedido%20de%20la%20bota%20CAT%20Campero" target="_blank">
       💬 Confirmar mi pedido por WhatsApp
     </a>
 
@@ -133,7 +160,7 @@ fbq('init','TU_PIXEL_ID_AQUI'); fbq('track','PageView'); fbq('track','Purchase',
       if(!pedido || !pedido.msg) return;
       if(Date.now() - (pedido.ts||0) > 3600000) return;
       var b = document.getElementById('wa-confirmar');
-      if(b) b.href = 'https://wa.me/573224146909?text=' + encodeURIComponent(pedido.msg);
+      if(b) b.href = 'https://wa.me/573159928000?text=' + encodeURIComponent(pedido.msg);
     }catch(e){}
   })();
 </script>

@@ -60,7 +60,7 @@ var MP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxUPRSHhFDQF8h3yBGBUR
     try { localStorage.setItem(CLAVE_MP, JSON.stringify({ ref: ref, ts: Date.now(), producto: PRODUCTO })); } catch (e) {}
 
     // Evento Lead (formulario enviado)
-    try { if (window.fbq) fbq('track', 'Lead', { content_name: PRODUCTO, content_type: 'product', currency: 'COP', value: total || undefined }, { eventID: ref + '-lead' }); } catch (e) {}
+    try { if (window.fbq) fbq('track', 'Lead', { content_name: PRODUCTO, content_type: 'product', currency: 'COP', value: total || undefined }, { eventID: ref + '-lead' }); if (window.capiEnviar) capiEnviar('Lead', ref + '-lead', { content_name: PRODUCTO, content_type: 'product', currency: 'COP', value: total || undefined }, { nombre: datos.nombre, celular: datos.celular, ciudad: datos.ciudad, departamento: datos.departamento }); } catch (e) {}
 
     // 1) Guardar el pedido como "pago pendiente" (Firestore + hoja existente), sin esperar más de 6 s
     var guardado = Promise.resolve();
@@ -144,6 +144,7 @@ var MP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxUPRSHhFDQF8h3yBGBUR
             content_name: PRODUCTO, content_type: 'product', contents: [{ id: PRODUCTO, quantity: 1 }],
             num_items: 1, value: res.total, currency: 'COP'
           }, { eventID: ref });
+          if (window.capiEnviar) capiEnviar('Purchase', ref, { content_name: PRODUCTO, content_type: 'product', contents: [{ id: PRODUCTO, quantity: 1 }], num_items: 1, value: res.total, currency: 'COP' }, {});
         }
       } catch (e) {}
     }
