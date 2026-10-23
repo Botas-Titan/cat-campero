@@ -5,7 +5,7 @@
  * Meta los deduplique. Ayuda mucho en iPhone/Safari, donde el píxel del navegador pierde datos.
  * Mientras CAPI_ENDPOINT esté vacío no hace nada.
  */
-var CAPI_ENDPOINT = '';   // ← URL de la app web de Apps Script (termina en /exec)
+var CAPI_ENDPOINT = 'https://script.google.com/macros/s/AKfycby9jXIcjHLkjpWuUblzUKGsgoAI3vKik7h5Vvz1l1sjzHMsaaC-C9HGvSGuHjL1UyW_/exec';   // ← URL de la app web de Apps Script (termina en /exec)
 
 (function () {
   function cookie(n) {
