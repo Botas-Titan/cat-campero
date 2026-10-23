@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-CO" data-mp="cat-campero" data-wa="573159928000">
+<html lang="es-CO" data-mp="cat-campero" data-wa="573224146909">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -96,7 +96,7 @@ fbq('track','PageView');
       <div class="paso"><div class="num">3</div><div><b>En ~5 días</b> <span class="fecha" id="p-entrega"></span><p>Recibes tu pedido en tu dirección y pagas al mensajero.</p></div></div>
     </div>
 
-    <a class="wa" id="wa-confirmar" href="https://wa.me/573159928000?text=Hola,%20acabo%20de%20hacer%20mi%20pedido%20de%20la%20bota%20CAT%20Campero" target="_blank">
+    <a class="wa" id="wa-confirmar" href="https://wa.me/573224146909?text=Hola,%20acabo%20de%20hacer%20mi%20pedido%20de%20la%20bota%20CAT%20Campero" target="_blank">
       💬 Confirmar mi pedido por WhatsApp
     </a>
 
@@ -160,7 +160,7 @@ fbq('track','PageView');
       if(!pedido || !pedido.msg) return;
       if(Date.now() - (pedido.ts||0) > 3600000) return;
       var b = document.getElementById('wa-confirmar');
-      if(b) b.href = 'https://wa.me/573159928000?text=' + encodeURIComponent(pedido.msg);
+      if(b) b.href = 'https://wa.me/573224146909?text=' + encodeURIComponent(pedido.msg);
     }catch(e){}
   })();
 </script>
