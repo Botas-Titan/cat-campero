@@ -85,6 +85,14 @@ var MP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxUPRSHhFDQF8h3yBGBUR
       });
     }).then(function (r) { return r.json(); })
       .then(function (res) {
+        // Seguridad: el monto que cobrará el servidor debe coincidir con el que ve el cliente.
+        // (Un servidor desactualizado no devuelve `total`: con variantes de precio se cancela.)
+        var esperado = (typeof precioActual === 'function') ? precioActual() : 0;
+        var coincide = (res && res.total !== undefined) ? Number(res.total) === esperado : !(datos.punta === 'Con punta de seguridad');
+        if (res && res.ok && res.url && !coincide) {
+          reactivar('El pago en línea de esta versión aún no está disponible. Elige pagar al recibir (contraentrega) y te atendemos por WhatsApp.');
+          return;
+        }
         if (res && res.ok && res.url) { window.location.href = res.url; return; }
         reactivar('No pudimos abrir Mercado Pago en este momento. Inténtalo de nuevo o elige pagar contraentrega.');
       })
