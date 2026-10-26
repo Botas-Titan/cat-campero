@@ -33,7 +33,7 @@ fbq('track','PageView');
     contados.push(pedido.id);
     localStorage.setItem('pedidosContados', contados.slice(-50).join(','));
     var custom = {content_name:'Bota CAT Campero', content_type:'product', contents:[{id:'cat-campero', quantity:1}],
-                  num_items:1, value:160000, currency:'COP'};
+                  num_items:1, value:159900, currency:'COP'};
     fbq('track','Purchase', custom, {eventID: pedido.id});
     if(window.capiEnviar) capiEnviar('Purchase', pedido.id, custom,
       {nombre:pedido.nombre, celular:pedido.celular, ciudad:pedido.ciudad, departamento:pedido.departamento});
@@ -41,7 +41,7 @@ fbq('track','PageView');
 })();
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1664973935026649&ev=PageView&noscript=1"/></noscript>
-<!-- TIKTOK:  ...ttq.load('TU_ID'); ttq.track('CompletePayment',{value:160000,currency:'COP'}); -->
+<!-- TIKTOK:  ...ttq.load('TU_ID'); ttq.track('CompletePayment',{value:159900,currency:'COP'}); -->
 
 <style>
   :root{

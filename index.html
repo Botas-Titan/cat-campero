@@ -23,7 +23,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1664973935026649');
 fbq('track', 'PageView');
-fbq('track', 'ViewContent', {content_name:'Bota CAT Campero', content_type:'product', value:160000, currency:'COP'});
+fbq('track', 'ViewContent', {content_name:'Bota CAT Campero', content_type:'product', value:159900, currency:'COP'});
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1664973935026649&ev=PageView&noscript=1"/></noscript>
 <script src="capi.js"></script>
@@ -313,6 +313,11 @@ ttq.page();
   .cd-label{font-size:.78rem;opacity:.8;margin-bottom:18px}
 
   /* Formulario */
+  /* Franja blanca de Mercado Pago: de borde a borde de la pantalla (sale del padding de la sección) */
+  .mp-franja{margin:22px -20px 0}
+  .mp-franja-banda{background:#fff;padding:10px 14px;text-align:center}
+  .mp-franja-banda img{display:block;max-width:100%;height:auto;margin:0 auto}
+  .mp-franja .cta-note{margin-top:8px}
   .form-sec{background:var(--acero2)}
   .form-sec h2{text-align:center;font-size:1.6rem;margin-bottom:4px}
   .form-sec .sub{text-align:center;color:var(--gris);margin-bottom:20px;font-size:.92rem}
@@ -367,6 +372,34 @@ ttq.page();
   body.scrolled .sticky-bar{display:flex}
   @media(min-width:521px){.sticky-bar{display:none!important}}
   .space-sticky{height:70px}
+  /* Botón flotante de WhatsApp (más información) */
+  .wa-float{position:fixed;right:max(14px,calc(50vw - 246px));bottom:16px;z-index:98;
+    display:flex;align-items:center;gap:8px;text-decoration:none;transition:bottom .25s ease,transform .15s}
+  .wa-float:active{transform:scale(.96)}
+  .wa-circulo{flex:0 0 48px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,.5);animation:waPulse 2.4s infinite}
+  .wa-float svg{width:26px;height:26px;fill:#fff;display:block}
+  /* Burbuja de chat: puntitos "escribiendo…" y luego el mensaje */
+  .wa-burbuja{position:relative;background:#fff;color:#111;border-radius:16px 16px 4px 16px;padding:7px 12px;
+    font-size:.76rem;font-weight:700;line-height:1.2;box-shadow:0 5px 14px rgba(0,0,0,.45);min-height:32px;
+    display:flex;align-items:center;white-space:nowrap;
+    opacity:0;transform:translateX(10px) scale(.96);transform-origin:right center;
+    transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+  .wa-burbuja.on{opacity:1;transform:none}
+  .wa-burbuja::after{content:'';position:absolute;right:-6px;bottom:0;border-style:solid;border-width:0 0 8px 8px;
+    border-color:transparent transparent transparent #fff}
+  .wa-burbuja .wa-puntos{display:none;gap:4px;padding:4px 2px}
+  .wa-burbuja .wa-puntos i{width:6px;height:6px;border-radius:50%;background:#9aa0a6;animation:waPunto 1s infinite}
+  .wa-burbuja .wa-puntos i:nth-child(2){animation-delay:.15s}
+  .wa-burbuja .wa-puntos i:nth-child(3){animation-delay:.3s}
+  .wa-burbuja.escribiendo .wa-puntos{display:flex}
+  .wa-burbuja.escribiendo .wa-texto{display:none}
+  @keyframes waPunto{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+  @keyframes waPulse{0%{box-shadow:0 6px 18px rgba(0,0,0,.5),0 0 0 0 rgba(37,211,102,.55)}
+    70%{box-shadow:0 6px 18px rgba(0,0,0,.5),0 0 0 13px rgba(37,211,102,0)}
+    100%{box-shadow:0 6px 18px rgba(0,0,0,.5),0 0 0 0 rgba(37,211,102,0)}}
+  @media(max-width:520px){body.scrolled .wa-float{bottom:80px}} /* sube para no taparse con la barra de compra */
+  @media(prefers-reduced-motion:reduce){.wa-circulo,.wa-burbuja .wa-puntos i{animation:none}}
 
   /* Nombre del mes de la oferta (se completa solo con JS) */
   .mes-oferta{font-style:normal}
@@ -456,7 +489,7 @@ ttq.page();
     <!-- Precio -->
     <div class="precio-box">
       <div class="precio-left">
-        <span class="precio-new" id="precio-new">$160.000</span>
+        <span class="precio-new" id="precio-new">$159.900</span>
         <span class="precio-old" id="precio-old">Antes $213.000</span>
       </div>
       <span class="precio-off">-25%<small>solo <em class="mes-oferta">este mes</em></small></span>
@@ -477,7 +510,7 @@ ttq.page();
     <div class="punta-wrap" id="punta-wrap">
       <div class="color-title">Versión: <b>Negra y Oro también con punta de seguridad</b></div>
       <div class="punta-ops">
-        <button type="button" class="punta-op act" data-punta="0" onclick="setPunta(false)">Sin punta<small>$160.000</small></button>
+        <button type="button" class="punta-op act" data-punta="0" onclick="setPunta(false)">Sin punta<small>$159.900</small></button>
         <button type="button" class="punta-op" data-punta="1" onclick="setPunta(true)">🛡️ Con punta de seguridad<small>$179.900</small></button>
       </div>
     </div>
@@ -706,7 +739,7 @@ ttq.page();
       <h2>Únete a las <em>+2.000 ventas</em> de este mes</h2>
       <p>Aprovecha el 25% de descuento de <em class="mes-oferta">este mes</em> antes de que termine</p>
     </div>
-    <a href="#comprar" class="cta">Comprar ahora — <span class="px-actual">$160.000</span>
+    <a href="#comprar" class="cta">Comprar ahora — <span class="px-actual">$159.900</span>
       <small>Envío gratis · Paga al recibir</small></a>
   </section>
 
@@ -753,7 +786,7 @@ ttq.page();
         <div class="r-line"><span>Descuento</span><span>25% OFF · <em class="mes-oferta">este mes</em></span></div>
         <div class="r-line"><span>Regalo</span><span id="res-regalo">🧦 Par de medias</span></div>
         <div class="r-line" id="res-punta-line" hidden><span>Versión</span><span>🛡️ Con punta de seguridad</span></div>
-        <div class="r-total"><span>Total a pagar</span><span class="px-actual">$160.000</span></div>
+        <div class="r-total"><span>Total a pagar</span><span class="px-actual">$159.900</span></div>
       </div>
 
       <div class="field">
@@ -784,7 +817,7 @@ ttq.page();
       <div class="field" id="punta-field">
         <label>Versión de la bota <span class="req">*</span></label>
         <select name="punta" id="sel-punta" required onchange="syncPunta()">
-          <option value="Sin punta de seguridad">Sin punta de seguridad — $160.000</option>
+          <option value="Sin punta de seguridad">Sin punta de seguridad — $159.900</option>
           <option value="Con punta de seguridad">Con punta de seguridad — $179.900</option>
         </select>
       </div>
@@ -826,8 +859,9 @@ ttq.page();
       <button type="submit" class="cta">Confirmar mi pedido
         <small>Pago contraentrega · Envío gratis</small></button>
       <p class="cta-note">Al confirmar, te contactamos por WhatsApp para agendar la entrega.</p>
-      <div style="text-align:center;margin-top:14px"><div style="display:inline-block;background:#fff;border-radius:14px;padding:10px 14px;max-width:100%"><img src="img/mercadopago-medios.png" alt="Pagos con Mercado Pago: Visa, Mastercard, American Express, Diners Club, PSE y Efecty" width="320" height="98" loading="lazy" style="display:block;max-width:100%;height:auto"></div><p class="cta-note" style="margin-top:6px">Pago seguro con Mercado Pago</p></div>
     </form>
+
+    <div class="mp-franja"><div class="mp-franja-banda"><img src="img/mercadopago-medios.png" alt="Pagos con Mercado Pago: Visa, Mastercard, American Express, Diners Club, PSE y Efecty" width="320" height="98" loading="lazy"></div><p class="cta-note">Pago seguro con Mercado Pago</p></div>
   </section>
 
   <!-- ========== PROCESO DE COMPRA ========== -->
@@ -863,9 +897,15 @@ ttq.page();
 
   <!-- Barra fija móvil -->
   <div class="sticky-bar">
-    <div class="p"><s class="px-antes">$213.000</s><b class="px-actual">$160.000</b></div>
+    <div class="p"><s class="px-antes">$213.000</s><b class="px-actual">$159.900</b></div>
     <a href="#comprar" id="btn-sticky" onclick="return comprarAhora(event)">Comprar ahora</a>
   </div>
+
+  <!-- Botón flotante de WhatsApp: abre el chat con un mensaje pre-escrito (el enlace se arma abajo con WA_NUMERO) -->
+  <a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp para pedir más información">
+    <span class="wa-burbuja escribiendo" id="wa-burbuja" aria-hidden="true"><span class="wa-puntos"><i></i><i></i><i></i></span><span class="wa-texto" id="wa-texto"></span></span>
+    <span class="wa-circulo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.003 3C9.374 3 4 8.373 4 15c0 2.116.553 4.18 1.6 6.002L4 29l8.2-1.568A12.93 12.93 0 0 0 16.003 27C22.63 27 28 21.627 28 15S22.63 3 16.003 3zm0 2.2c5.41 0 9.797 4.39 9.797 9.8s-4.388 9.8-9.797 9.8a9.76 9.76 0 0 1-4.98-1.37l-.357-.212-3.7.708.72-3.6-.234-.37A9.76 9.76 0 0 1 6.2 15c0-5.41 4.39-9.8 9.803-9.8zm-3.6 4.9c-.2 0-.52.075-.79.37-.27.3-1.04 1.016-1.04 2.48 0 1.463 1.065 2.877 1.213 3.075.15.2 2.09 3.2 5.07 4.49.71.307 1.263.49 1.695.627.712.226 1.36.194 1.873.118.57-.085 1.757-.718 2.005-1.41.247-.694.247-1.288.173-1.41-.074-.124-.272-.198-.57-.347-.297-.15-1.757-.867-2.03-.966-.272-.1-.47-.15-.67.15-.198.297-.77.966-.943 1.164-.173.2-.347.223-.644.075-.297-.15-1.256-.463-2.39-1.476-.883-.788-1.48-1.76-1.653-2.058-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.148-.174.198-.298.297-.497.1-.198.05-.372-.025-.52-.075-.15-.655-1.62-.92-2.21-.24-.567-.49-.49-.67-.5z"/></svg></span>
+  </a>
 
   <!-- Recuadro de confirmación: aparece antes de enviar al cliente a WhatsApp -->
   <div class="modal-confirm" id="modal-confirm" hidden role="dialog" aria-modal="true" aria-labelledby="mc-titulo">
@@ -874,7 +914,7 @@ ttq.page();
       <h3 id="mc-titulo">¡Estás a un paso de completar tu pedido!</h3>
       <p class="mc-txt">Tus datos están preparados. Envíanos el mensaje por WhatsApp para que nuestro equipo pueda recibir tu solicitud y confirmar los detalles.</p>
       <div class="mc-precio">
-        <b>Precio final: <span class="px-actual">$160.000</span> COP</b>
+        <b>Precio final: <span class="px-actual">$159.900</span> COP</b>
         <div class="mc-ok" id="mc-envio">✓ Envío incluido a toda Colombia</div>
         <div>✓ Pagas cuando recibes tu pedido.</div>
         <small id="mc-nota">Sin costo adicional de envío. Aplican las condiciones de cobertura y entrega que correspondan.</small>
@@ -893,6 +933,38 @@ ttq.page();
   // 🔶 NÚMERO DE WHATSAPP — cámbialo aquí (formato: 57 + número, sin + ni espacios)
   var WA_NUMERO = '573224146909';
   // ============================================================
+
+  // ---- Botón flotante de WhatsApp: mensaje pre-escrito pidiendo más información ----
+  (function(){
+    var a = document.getElementById('wa-float'); if(!a) return;
+    var txt = '¡Hola! 👋 Estoy interesado(a) en adquirir una bota CAT Campero, pero quiero más información. Gracias 🙏';
+    a.href = 'https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(txt);
+
+    // Burbuja que simula un chat: "escribiendo…" → se escribe el mensaje → se queda → se va → se repite
+    var burbuja = document.getElementById('wa-burbuja'), caja = document.getElementById('wa-texto');
+    var MENSAJE = 'Quiero más información';
+    if(!burbuja || !caja) return;
+    if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
+      caja.textContent = MENSAJE; burbuja.classList.remove('escribiendo'); burbuja.classList.add('on'); return;
+    }
+    function ciclo(){
+      caja.textContent = '';
+      burbuja.classList.add('escribiendo'); burbuja.classList.add('on');   // aparece con los puntitos
+      setTimeout(function(){
+        burbuja.classList.remove('escribiendo');                           // empieza a "escribir"
+        var i = 0;
+        (function letra(){
+          caja.textContent = MENSAJE.slice(0, ++i);
+          if(i < MENSAJE.length) return setTimeout(letra, 55);
+          setTimeout(function(){                                           // se queda leíble y se esconde
+            burbuja.classList.remove('on');
+            setTimeout(ciclo, 3500);                                       // pausa antes de repetir
+          }, 4500);
+        })();
+      }, 1400);
+    }
+    setTimeout(ciclo, 1800);
+  })();
 
   // ---- Enlaces de WhatsApp por marca (mensaje pre-escrito) ----
   document.querySelectorAll('.marca[data-marca]').forEach(function(a){
@@ -1009,7 +1081,7 @@ ttq.page();
   }
 
   // ---- Punta de seguridad: solo en Negra y Oro (+$19.900) ----
-  var PRECIO_BASE = 160000, PRECIO_PUNTA = 179900;
+  var PRECIO_BASE = 159900, PRECIO_PUNTA = 179900;
   var PRECIO_ANTES_BASE = 213000, PRECIO_ANTES_PUNTA = 239900; // 25% de descuento sobre cada precio
   var conPunta = false;
   function fmtPrecio(n){ return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }

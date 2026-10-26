@@ -3,7 +3,7 @@
 Landing de un solo producto (misma base que `velez-thomas/`), ambientada en trabajo pesado:
 construcción, mecánica, soldadura y campo. Pago contraentrega, pedido por WhatsApp.
 
-- Precio: **$160.000** (antes $299.000, -46%).
+- Precio: **$159.900** (antes $213.000, -25% solo este mes).
 - Colores: Negra, Oro, Café, Avellana.
 - Tallas: 37 a 44.
 
