@@ -376,6 +376,7 @@ ttq.page();
   .wa-float{position:fixed;right:max(14px,calc(50vw - 246px));bottom:16px;z-index:98;
     display:flex;align-items:center;gap:8px;text-decoration:none;transition:bottom .25s ease,transform .15s}
   .wa-float:active{transform:scale(.96)}
+  .wa-float{pointer-events:none} .wa-circulo{pointer-events:auto;cursor:pointer} /* solo el círculo abre WhatsApp, no el texto */
   .wa-circulo{flex:0 0 48px;width:48px;height:48px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;
     box-shadow:0 6px 18px rgba(0,0,0,.5);animation:waPulse 2.4s infinite}
   .wa-float svg{width:26px;height:26px;fill:#fff;display:block}
